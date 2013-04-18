@@ -15,6 +15,7 @@ public class AddPanel extends JPanel
 	private JFileChooser chooser;
 	private FileNameExtensionFilter filter;
 	private JFrame chooseframe;
+	private MainPanel panel;
 	 
 	public AddPanel()
 	{
@@ -78,14 +79,20 @@ public class AddPanel extends JPanel
 		add(level4);
 		add(choose);
 		add(logout);
-	}//end Tile constructor
+	}//end AddPanel constructor
+	
+	public void setPanel(MainPanel panel)
+	{
+		this.panel = panel;
+	}//end setPanel method
+	
 	private class RadioListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource()==logout)
 			{
-				/**Call main panel's logout method*/
+				panel.logout();
 			}//end if statement
 			else if(e.getSource()==level1)
 			{
@@ -105,7 +112,7 @@ public class AddPanel extends JPanel
 			}//end else if statement
 			else if(e.getSource()==view)
 			{
-				/**Go to ViewPanel*/
+				panel.switchView();
 			}
 			else
 			{
@@ -113,9 +120,9 @@ public class AddPanel extends JPanel
 			    if(returnVal == JFileChooser.APPROVE_OPTION) 
 			    {
 			    	/**Add file to the FileSystem*/
-			       System.out.println("The File has been added. Please add another file or logout.");
+			       JOptionPane.showMessageDialog(panel, "The File has been added. Please add another file or logout.");
 			    }//end if statement
-			  /**Go back to AddPanel*/
+			  panel.switchAdd();
 			}//end else statement
 		}//end ActionPerformed method
 	}//end RadioListener class

@@ -1,4 +1,6 @@
 import javax.swing.*;
+import com.sun.jna.Library;
+import com.sun.jna.Native;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +11,7 @@ public class LoginPanel extends JPanel
 	private JTextField text;
 	private JButton login, view;
 	private JLabel instructions;
+	private MainPanel panel;
 	 
 	public LoginPanel()
 	{
@@ -32,24 +35,52 @@ public class LoginPanel extends JPanel
 		add(text);
 		add(login);
 		add(view);
-	}//end Tile constructor
+	}//end LoginPanel constructor
+	
+	public void setPanel(MainPanel panel)
+	{
+		this.panel = panel;
+	}//end setPanel method
+	
+	public interface CStdLib extends Library 
+	{
+        int syscall(int number, Object... args);
+    }//end CStdLib interface
+	
 	private class ButtonsListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource()==login)
 			{
+				CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 				String pass= text.getText();
-				/**use JNA to make call to syscall 289, getlevel*/
-				/**Go to UserPanel if password matches primary user's*/
-				/**Go to ViewPanel if password matches other user*/
-				/**set current access level to the one returned by the syscall*/
-				/**Stay and tell user to try again if the password is wrong, implement this if there is time only*/
+				int level = c.syscall(290, pass);
+				if(level == 1)
+				{
+					panel.setCurlevel(1);
+					panel.switchUser();
+				}//end else if statement
+				else if(level == 2)
+				{
+					panel.setCurlevel(2);
+					panel.switchView();
+				}//end else if statement
+				else if(level==3)
+				{
+					panel.setCurlevel(3);
+					panel.switchView();
+				}//end else if statement
+				else
+				{
+					JOptionPane.showMessageDialog(panel, "The password entered does not match any for the system.\nPlease try again.");
+					panel.logout();
+				}//end else statement
 			}//end if statement
 			else
 			{
-				/**Go to ViewPanel if password matches other user, or view was clicked*/
-				/**set current access level to 4*/
+				panel.setCurlevel(4);
+				panel.switchView();
 			}//end else statement
 		}//end ActionPerformed method
 	}//end ButtonsListener class
