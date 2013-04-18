@@ -121,7 +121,70 @@ static int p4_removexattr(const char *path, const char *name)
 {
 }
 
+static int p4_flush(const char *path, struct fuse_file_info *fi)
+{
+}
 
+static int p4_opendir(const char *path, struct fuse_file_info *fi)
+{
+}
+
+static int p4_releasedir(const char *path, struct fuse_file_info *fi)
+{
+}
+
+static int p4_fsyncdir(const char *path, int datasync, struct fuse_file_info *fi)
+{
+}
+
+static void *p4_init(struct fuse_conn_info *conn)
+{
+}
+
+static void destroy(void *private_data)
+{
+}
+
+static int ftruncate(const char *path, off_t size, struct fuse_file_info *fi)
+{
+}
+
+static int fgetattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
+{
+}
+
+static int lock(const char *path, struct fuse_file_info *fi, int cmd,
+		     struct flock *locks)
+{
+}
+
+static int bmap(const char *path, size_t blocksize, uint64_t *idx)
+{
+}
+
+static int ioctl(const char *path, int cmd, void *arg,
+		      struct fuse_file_info *fi, unsigned int flags, void *data)
+{
+}
+
+static int poll(const char *path, struct fuse_file_info *fi,
+		     struct fuse_pollhandle *ph, unsigned *reventsp)
+{
+}
+
+static int write_buf(const char *path, struct fuse_bufvec *buf, off_t off,
+			  struct fuse_file_info *fi)
+{
+}
+
+static int read_buf(const char *path, struct fuse_bufvec **bufp,
+			 size_t size, off_t off, struct fuse_file_info *fi)
+{
+}
+
+static int flock(const char *path, struct fuse_file_info *fi, int op)
+{
+}
 
 static struct fuse_operations p4_oper = {
 	.getattr	= p4_getattr,
@@ -150,6 +213,21 @@ static struct fuse_operations p4_oper = {
 	.getxattr	= p4_getxattr,
 	.listxattr	= p4_listxattr,
 	.removexattr	= p4_removexattr,
+	.flush		= p4_flush,
+	.opendir	= p4_opendir,
+	.releasedir	= p4_releasedir,
+	.fsyncdir	= p4_fsyncdir,
+	.destroy	= p4_destroy,
+	.ftruncate	= p4_ftruncate,
+	.fgetattr	= p4_fgetattr,
+	.lock		= p4_lock,
+	.bmap		= p4_bmap,
+	.ioctl		= p4_ioctl,
+	.poll		= p4_poll,
+	.write_buf	= p4_write_buf,
+	.read_buf	= p4_read_buf,
+	.flock		= p4_flock,
+	.init		= *p4_init,
 };
 
 int main(int argc, char *argv[])
