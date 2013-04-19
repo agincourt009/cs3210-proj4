@@ -1,4 +1,6 @@
 import javax.swing.*;
+import com.sun.jna.Library;
+import com.sun.jna.Native;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +11,7 @@ public class FirstPanel extends JPanel
 	private JTextField text1, text2, text3;
 	private JButton done;
 	private JLabel instructions;
+	private MainPanel panel;
 	 
 	public FirstPanel()
 	{
@@ -30,19 +33,31 @@ public class FirstPanel extends JPanel
 		add(text2);
 		add(text3);
 		add(done);
-	}//end Tile constructor
+	}//end FirstPanel constructor
+	
+	public void setPanel(MainPanel panel)
+	{
+		this.panel = panel;
+	}//end setPanel method
+	
+	public interface CStdLib extends Library 
+	{
+        int syscall(int number, Object... args);
+    }//end CStdLib interface
+	
 	private class DoneListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 			String pass1= text1.getText();
-			/**use JNA to make call to syscall 288, setpassword*/
+			c.syscall(290, pass1);
 			String pass2= text2.getText();
-			/**use JNA to make call to syscall 288, setpassword*/
+			c.syscall(290, pass2);
 			String pass3= text3.getText();
-			/**use JNA to make call to syscall 288, setpassword*/
-			/**Go to UserPanel*/
-			/**set current access level to one*/
+			c.syscall(290, pass3);
+			panel.switchUser();
+			panel.setCurlevel(1);
 		}//end ActionPerformed method
 	}//end DoneListener class
 }//end FirstPanel class

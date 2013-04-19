@@ -8,6 +8,7 @@ public class UserPanel extends JPanel
 	private static final long serialVersionUID = 1L;
 	private JButton logout, view, add;
 	private JLabel instructions;
+	private MainPanel panel;
 	 
 	public UserPanel()
 	{
@@ -34,22 +35,28 @@ public class UserPanel extends JPanel
 		add(view);
 		add(add);
 		add(logout);
-	}//end Tile constructor
+	}//end UserPanel constructor
+	
+	public void setPanel(MainPanel panel)
+	{
+		this.panel = panel;
+	}//end setPanel method
+	
 	private class ButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource()==logout)
 			{
-				/**Call main panel's logout method*/
+				panel.logout();
 			}//end if statement
 			else if(e.getSource()==add)
 			{
-				/**Go to AddPanel*/
+				panel.switchAdd();
 			}//end else statement
 			else
 			{
-				/**Go to ViewPanel*/
+				panel.switchView();
 			}
 		}//end ActionPerformed method
 	}//end ButtonListener class
