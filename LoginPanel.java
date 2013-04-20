@@ -1,6 +1,5 @@
 import javax.swing.*;
-import com.sun.jna.Library;
-import com.sun.jna.Native;
+import com.sun.jna.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,20 +7,21 @@ import java.awt.event.ActionListener;
 public class LoginPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
-	private JTextField text;
-	private JButton login, view;
+	private JTextField text, user;
+	private JButton login, view, create;
 	private JLabel instructions;
 	private MainPanel panel;
 	 
 	public LoginPanel()
 	{
-		instructions = new JLabel("Either enter the password for your access level,\nor click the 'Open Access' button to view the photos\nthat are accessible by everyone.");
+		instructions = new JLabel("Enter your username and password to login, create a new\naccount,or click the 'View Public' button to view public photos.");
 		
 		text = new JTextField("Password"); 
+		user = new JTextField("Username");
 		
 		login = new JButton("Login");
-		
 		view = new JButton("Open Access");
+		create = new JButton("Create Account");
 		
 		setPreferredSize(new Dimension(400,400));
 		
@@ -31,9 +31,14 @@ public class LoginPanel extends JPanel
 		ButtonsListener opac = new ButtonsListener();
 		view.addActionListener(opac);
 		
+		ButtonsListener creat = new ButtonsListener();
+		create.addActionListener(creat);
+		
 		add(instructions);
+		add(user);
 		add(text);
 		add(login);
+		add(create);
 		add(view);
 	}//end LoginPanel constructor
 	
@@ -55,28 +60,33 @@ public class LoginPanel extends JPanel
 			{
 				CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 				String pass= text.getText();
-				int level = c.syscall(290, pass);
-				if(level == 1)
+				String usern = user.getText();
+				
+				Memory passmem = new Memory(pass.length());
+				passmem.write(0, pass.getBytes(), 0, pass.length());
+				
+				Memory usermem = new Memory(usern.length());
+				usermem.write(0, usern.getBytes(), 0, usern.length());
+				
+				int passlength = Native.toCharArray(pass).length;
+				int userlength = Native.toCharArray(usern).length;
+				
+				int correct = c.syscall(286, usermem, passmem,userlength, passlength);
+				if(correct == 1)
 				{
-					panel.setCurlevel(1);
+					panel.setCurUser(usern);
 					panel.switchUser();
-				}//end else if statement
-				else if(level == 2)
-				{
-					panel.setCurlevel(2);
-					panel.switchView();
-				}//end else if statement
-				else if(level==3)
-				{
-					panel.setCurlevel(3);
-					panel.switchView();
 				}//end else if statement
 				else
 				{
-					JOptionPane.showMessageDialog(panel, "The password entered does not match any for the system.\nPlease try again.");
+					JOptionPane.showMessageDialog(panel, "The username and password entered do not match.\nPlease try again.");
 					panel.logout();
 				}//end else statement
 			}//end if statement
+			else if(e.getSource()==create)
+			{
+				panel.switchNew();
+			}//end else if statement
 			else
 			{
 				panel.setCurlevel(4);

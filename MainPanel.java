@@ -1,24 +1,27 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import com.sun.jna.Library;
-import com.sun.jna.Native;
 
 public class MainPanel extends JFrame
 {
+	private static final long serialVersionUID = 1L;
 	private ViewPanel view;
 	private LoginPanel login;
 	private AddPanel add;
 	private UserPanel user;
-	private FirstPanel first;
+	private NewPanel newp;
+	private RelationshipPanel relation;
 	private int curlevel;
-	public MainPanel(ViewPanel view, LoginPanel login, AddPanel add, UserPanel user, FirstPanel first)
+	private String curUser;
+	
+	public MainPanel(ViewPanel view, LoginPanel login, AddPanel add, UserPanel user, NewPanel newp, RelationshipPanel relation)
 	{
 		this.view = view;
 		this.login = login;
 		this.add = add;
 		this.user = user;
-		this.first = first;
+		this.newp = newp;
+		this.relation = relation;
 	}//end MainPanel constructor
 	public void logout()
 	{
@@ -44,6 +47,18 @@ public class MainPanel extends JFrame
 		this.getContentPane().add(view);
 	}//end switchView method
 	
+	public void switchNew()
+	{
+		this.getContentPane().removeAll();
+		this.getContentPane().add(newp);
+	}//end switchNew method
+	
+	public void switchRelationship()
+	{
+		this.getContentPane().removeAll();
+		this.getContentPane().add(relation);
+	}//end switchNew method
+	
 	public void addData()
 	{
 		
@@ -65,20 +80,26 @@ public class MainPanel extends JFrame
 		return curlevel;
 	}//end curlevel getter
 	
-	public interface CStdLib extends Library 
+	public void setCurUser(String user)
 	{
-        int syscall(int number, Object... args);
-    }//end CStdLib interface
+		this.curUser = user;
+	}//end curUser setter
+	
+	public String getCurUser()
+	{
+		return curUser;
+	}//end curUser getter
 	
 	public static void main(String[] args)
 	{
 		ViewPanel view = new ViewPanel();
 		LoginPanel login = new LoginPanel();
-		FirstPanel first = new FirstPanel();
 		AddPanel add = new AddPanel();
 		UserPanel user = new UserPanel();
+		NewPanel newp = new NewPanel();
+		RelationshipPanel relation = new RelationshipPanel();
 		
-		MainPanel panel = new MainPanel(view, login, add, user, first);
+		MainPanel panel = new MainPanel(view, login, add, user, newp, relation);
 		
 		panel.setPreferredSize(new Dimension(500,500));
 		
@@ -86,20 +107,12 @@ public class MainPanel extends JFrame
 		
 		view.setPanel(panel);
 		login.setPanel(panel);
-		first.setPanel(panel);
 		add.setPanel(panel);
 		user.setPanel(panel);
+		newp.setPanel(panel);
+		relation.setPanel(panel);
 		
-		CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
-		int ret = c.syscall(290, "/tmp/create-new-directory-here");
-		if(ret == 1)
-		{
-			panel.getContentPane().add(first);
-		}//end if statement
-		else
-		{
-			panel.getContentPane().add(login);
-		}//end else statement
+		panel.getContentPane().add(login);
 		
 		panel.pack();
 		panel.setVisible(true);
