@@ -22,7 +22,7 @@ public class LoginPanel extends JPanel
 		user = new JTextField("Username");
 		
 		login = new JButton("Login");
-		view = new JButton("Open Access");
+		view = new JButton("View Public");
 		create = new JButton("Create Account");
 		
 		setPreferredSize(new Dimension(700,400));
@@ -93,10 +93,7 @@ public class LoginPanel extends JPanel
 			}//end if statement
 			else if(e.getSource()==create)
 			{
-				panel.getContentPane().removeAll();
-				NewPanel newp = new NewPanel(panel);
-				panel.getContentPane().add(newp);
-				panel.setNew(newp);
+				panel.setContentPane(panel.getNew());
 			}//end else if statement
 			else
 			{
