@@ -90,7 +90,7 @@ public class MainPanel extends JFrame
 		
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		panel.getContentPane().add(login);
+		panel.setContentPane(login);
 		
 		panel.pack();
 		panel.setVisible(true);
