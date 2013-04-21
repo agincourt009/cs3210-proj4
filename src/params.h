@@ -24,7 +24,6 @@
 #include <limits.h>
 #include <stdio.h>
 struct p4_state {
-    FILE *logfile;
     char *rootdir;
     char *bkend_dir;
 };
