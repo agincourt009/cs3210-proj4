@@ -60,13 +60,13 @@ public class MainPanel extends JFrame
 		catch(IOException i)
 	    {
 	         i.printStackTrace();
-		 return
+	         return;
 	    }//end catch block
 		catch(ClassNotFoundException c)
 	    {
 	         System.out.println("RelationshipList or ControlList class not found.");
 	         c.printStackTrace();
-		 return;
+	         return;
 	    }//end catch block
 		
 		panel.setPreferredSize(new Dimension(500,500));
