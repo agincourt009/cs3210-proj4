@@ -74,7 +74,9 @@ public class LoginPanel extends JPanel
 				int correct = c.syscall(286, usermem, passmem,userlength, passlength);
 				if(correct == 1)
 				{
-					panel.setCurUser(usern);
+					User newu = new User(usern);
+					panel.setCurlevel(0);
+					panel.setCurUser(newu);
 					panel.switchUser();
 				}//end else if statement
 				else

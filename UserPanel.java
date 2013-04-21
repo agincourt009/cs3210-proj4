@@ -6,19 +6,22 @@ import java.awt.event.ActionListener;
 public class UserPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
-	private JButton logout, view, add;
+	private JButton logout, view, add, addrelation;
 	private JLabel instructions;
 	private MainPanel panel;
 	 
 	public UserPanel()
 	{
-		instructions = new JLabel("Would you like to view photos, add photos, or logout?");
+		instructions = new JLabel("Would you like to view photos, add photos,\nadd friends or family, or logout?");
 		
 		logout = new JButton("Logout");
 		
 		view = new JButton("View Photos");
 		
 		add = new JButton("Add Photos");
+		
+		addrelation = new JButton("Add Friends or Family");
+		
 		
 		setPreferredSize(new Dimension(400,400));
 		
@@ -31,9 +34,13 @@ public class UserPanel extends JPanel
 		ButtonListener addpho = new ButtonListener();
 		add.addActionListener(addpho);
 		
+		ButtonListener addf = new ButtonListener();
+		addrelation.addActionListener(addf);
+		
 		add(instructions);
 		add(view);
 		add(add);
+		add(addrelation);
 		add(logout);
 	}//end UserPanel constructor
 	
@@ -54,6 +61,10 @@ public class UserPanel extends JPanel
 			{
 				panel.switchAdd();
 			}//end else statement
+			else if(e.getSource()==addrelation)
+			{
+				panel.switchRelationship();
+			}//end else if statement
 			else
 			{
 				panel.switchView();

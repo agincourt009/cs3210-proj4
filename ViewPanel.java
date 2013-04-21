@@ -9,34 +9,50 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.sun.jna.*;
 	
 public class ViewPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
-	private JButton logout;
+	private JButton logout, add;
 	private JLabel instructions;
 	private JList photos;
 	private JScrollPane scroll;
-	private ArrayList<Object> data;
+	private String[] data;
 	private BufferedImage preview;
 	private JLabel pictureframe;
 	private MainPanel panel;
+	private boolean prevSelect;
+	private File file;
 	 
 	public ViewPanel()
 	{	
+		prevSelect=false;
 		instructions = new JLabel("Click on the name of the photo you would like to view\nand it will show up on the right.");
 		
-		logout = new JButton("Logout");
+		if(panel.getCurlevel()==4)
+		{
+			logout = new JButton("Logout");
+		}//end if statement
+		else
+		{
+			
+		}//end else statement
+		add = new JButton("Add Photos");
 		
 		setPreferredSize(new Dimension(400,400));
 		
 		pictureframe = new JLabel();
 		
-		/**Can initialize data here, fill it up with values, and then the next line become
-		 *photos = new JList(data);
-		 */
-		photos = new JList();
-		/**Add photos accessible with the current access level here*/
+		ArrayList<String> temp = panel.getControl().getFiles(panel.getCurUser());
+		data = new String[temp.size()];
+		
+		for(int i = 0; i<temp.size();i++)
+		{
+			data[i]=temp.get(i);
+		}//end for loop
+		
+		photos = new JList(data);
 		photos.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		photos.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		photos.setVisibleRowCount(10);
@@ -50,9 +66,13 @@ public class ViewPanel extends JPanel
 		LogoutListener log = new LogoutListener();
 		logout.addActionListener(log);
 		
+		LogoutListener ad = new LogoutListener();
+		add.addActionListener(ad);
+		
 		add(instructions);
 		add(scroll);
 		add(pictureframe);
+		add(add);
 		add(logout);
 	}//end ViewPanel constructor
 	
@@ -61,25 +81,43 @@ public class ViewPanel extends JPanel
 		this.panel = panel;
 	}//end setPanel method
 	
+	public interface CStdLib extends Library 
+	{
+        int syscall(int number, Object... args);
+    }//end CStdLib interface
+	
 	private class ListListener implements ListSelectionListener
 	{
 		public void valueChanged(ListSelectionEvent e) 
 		{
-		    if (e.getValueIsAdjusting() == false) 
+			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
+			if (e.getValueIsAdjusting() == false) 
 		    {
+				c.syscall(289, true);
+				if(prevSelect)
+		    	{
+		    		try
+		    		{
+		    			ImageIO.write(preview,"jpg",file);
+		    		}//end try block
+		    		catch(IOException ex)
+		    		{
+		    			ex.printStackTrace();
+		    		}//end catch block
+		    	}
 		    	int sel = photos.getSelectedIndex();
-		    	/**try 
-				*{
-				*/
-					/**Make this an actual path*/
-					/**preview = ImageIO.read(new File(data.get(sel).getPath()));
-				*} 
+		    	try 
+				{
+					file = new File(data[sel]);
+		    		preview = ImageIO.read(file);
+				}//end try block
 				catch (IOException ex) 
 				{
 					ex.printStackTrace();
-				}
-				*/
+				}//end catch block
+		    	c.syscall(289,false);
 				pictureframe = new JLabel(new ImageIcon( preview ));
+				prevSelect = true;
 		    }
 		}
 	}//end ButtonListener class
@@ -88,7 +126,14 @@ public class ViewPanel extends JPanel
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+			if(e.getSource()== logout)
+			{
 				panel.logout();
+			}//end if statement
+			else
+			{
+				panel.switchAdd();
+			}//end else statement
 		}//end ActionPerformed method
 	}//end ButtonListener class
 }//end ViewPanel class

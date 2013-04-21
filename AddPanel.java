@@ -1,8 +1,10 @@
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import com.sun.jna.*;
 
 public class AddPanel extends JPanel
 {
@@ -11,11 +13,11 @@ public class AddPanel extends JPanel
 	private JLabel instructions;
 	private ButtonGroup group;
 	private JRadioButton level1, level2, level3, level4;
-	private int curlevel;
 	private JFileChooser chooser;
 	private FileNameExtensionFilter filter;
 	private JFrame chooseframe;
 	private MainPanel panel;
+	private int curlevel;
 	 
 	public AddPanel()
 	{
@@ -86,10 +88,16 @@ public class AddPanel extends JPanel
 		this.panel = panel;
 	}//end setPanel method
 	
+	public interface CStdLib extends Library 
+	{
+        int syscall(int number, Object... args);
+    }//end CStdLib interface
+	
 	private class RadioListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 			if(e.getSource()==logout)
 			{
 				panel.logout();
@@ -119,10 +127,29 @@ public class AddPanel extends JPanel
 				int returnVal = chooser.showOpenDialog(chooseframe);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) 
 			    {
-			    	/**Add file to the FileSystem*/
+			    	File file = chooser.getSelectedFile();
+			    	c.syscall(289,true);
+			    	file.renameTo(new File("//home//agincourt//workspace//Filesystem//src//storage"));
+			    	c.syscall(289,false);
+			    	if(curlevel==1)
+			    	{
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false);
+			    	}//end if statement
+			    	else if(curlevel==2)
+			    	{
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, false, false);
+			    	}//end else if statement
+			    	else if(curlevel==3)
+			    	{
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, false);
+			    	}//end else if statement
+			    	else if(curlevel==4)
+			    	{
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true);
+			    	}//end else if statement
 			       JOptionPane.showMessageDialog(panel, "The File has been added. Please add another file or logout.");
 			    }//end if statement
-			  panel.switchAdd();
+			    panel.switchAdd();
 			}//end else statement
 		}//end ActionPerformed method
 	}//end RadioListener class

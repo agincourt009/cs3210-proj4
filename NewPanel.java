@@ -65,9 +65,12 @@ instructions = new JLabel("Type a new username and password, and hit the 'Create
 				int success = c.syscall(288, usermem, passmem, userlength, passlength);
 				if(success == 0)
 				{
-					/**Stop the system here.*/
+					panel.saveControl();
+					panel.saveRelations();
+					System.exit(0);
 				}//end if statement
-				panel.setCurUser(usern);
+				User newu = new User(usern);
+				panel.setCurUser(newu);
 				panel.switchUser();
 			}//end if statement
 			else
