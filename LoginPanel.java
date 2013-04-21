@@ -94,6 +94,7 @@ public class LoginPanel extends JPanel
 			else if(e.getSource()==create)
 			{
 				panel.setContentPane(panel.getNew());
+				panel.update(panel.getG());
 			}//end else if statement
 			else
 			{
