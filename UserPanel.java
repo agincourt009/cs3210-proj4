@@ -10,8 +10,9 @@ public class UserPanel extends JPanel
 	private JLabel instructions;
 	private MainPanel panel;
 	 
-	public UserPanel()
+	public UserPanel(MainPanel panel)
 	{
+		this.panel = panel;
 		instructions = new JLabel("Would you like to view photos, add photos,\nadd friends or family, or logout?");
 		
 		logout = new JButton("Logout");

@@ -26,8 +26,9 @@ public class ViewPanel extends JPanel
 	private File file;
 	private boolean login;
 	 
-	public ViewPanel()
+	public ViewPanel(MainPanel panel)
 	{	
+		this.panel = panel;
 		prevSelect=false;
 		instructions = new JLabel("Click on the name of the photo you would like to view\nand it will show up on the right.");
 		

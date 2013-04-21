@@ -12,8 +12,9 @@ public class LoginPanel extends JPanel
 	private JLabel instructions;
 	private MainPanel panel;
 	 
-	public LoginPanel()
+	public LoginPanel(MainPanel panel)
 	{
+		this.panel = panel;
 		instructions = new JLabel("Enter your username and password to login, create a new\naccount,or click the 'View Public' button to view public photos.");
 		
 		text = new JTextField("Password"); 

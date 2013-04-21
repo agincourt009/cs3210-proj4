@@ -12,9 +12,10 @@ public class NewPanel extends JPanel
 	private JButton create;
 	private JLabel instructions;
 
-	public NewPanel()
+	public NewPanel(MainPanel panel)
 	{
-instructions = new JLabel("Type a new username and password, and hit the 'Create' button.");
+		this.panel = panel;
+		instructions = new JLabel("Type a new username and password, and hit the 'Create' button.");
 		
 		text = new JTextField("Password"); 
 		user = new JTextField("Username");

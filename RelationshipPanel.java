@@ -21,8 +21,9 @@ public class RelationshipPanel extends JPanel
 	private boolean fam;
 	private JTextField user;
 	
-	public RelationshipPanel()
+	public RelationshipPanel(MainPanel panel)
 	{
+		this.panel = panel;
 		instructions = new JLabel("Type the username, select if they are a\nfriend or family member, and then click add.");
 		
 		user = new JTextField("Username");

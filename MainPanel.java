@@ -25,16 +25,23 @@ public class MainPanel extends JFrame
 	
 	public static void main(String[] args)
 	{
-		ViewPanel view = new ViewPanel();
-		LoginPanel login = new LoginPanel();
-		AddPanel add = new AddPanel();
-		UserPanel user = new UserPanel();
-		NewPanel newp = new NewPanel();
-		RelationshipPanel relation = new RelationshipPanel();
 		RelationshipList relations = new RelationshipList();
 		ControlList control = new ControlList();
 		
-		MainPanel panel = new MainPanel(view, login, add, user, newp, relation, relations, control);
+		MainPanel panel = new MainPanel(relations, control);
+		
+		ViewPanel view = new ViewPanel(panel);
+		panel.setView(view);
+		LoginPanel login = new LoginPanel(panel);
+		panel.setLogin(login);
+		AddPanel add = new AddPanel(panel);
+		panel.setAdd(add);
+		UserPanel user = new UserPanel(panel);
+		panel.setUser(user);
+		NewPanel newp = new NewPanel(panel);
+		panel.setNew(newp);
+		RelationshipPanel relation = new RelationshipPanel(panel);
+		panel.setRelationship(relation);
 		
 		try
 	    {
@@ -66,30 +73,18 @@ public class MainPanel extends JFrame
 		
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		view.setPanel(panel);
-		login.setPanel(panel);
-		add.setPanel(panel);
-		user.setPanel(panel);
-		newp.setPanel(panel);
-		relation.setPanel(panel);
-		
 		panel.getContentPane().add(login);
 		
 		panel.pack();
 		panel.setVisible(true);
 	}//end main method
 
-	public MainPanel(ViewPanel view, LoginPanel login, AddPanel add, UserPanel user, NewPanel newp, RelationshipPanel relation, RelationshipList relations, ControlList control)
+	public MainPanel(RelationshipList relations, ControlList control)
 	{
-		this.view = view;
-		this.login = login;
-		this.add = add;
-		this.user = user;
-		this.newp = newp;
-		this.relation = relation;
 		this.relations = relations;
 		this.control = control;
-		curlevel = 0;		
+		curlevel = 0;
+		curUser = null;
 
 		CloseHandler close = new CloseHandler();
 		addWindowListener(close);
@@ -135,10 +130,35 @@ public class MainPanel extends JFrame
 		this.getContentPane().add(relation);
 	}//end switchNew method
 	
-	public void addData()
+	public void setAdd(AddPanel add)
 	{
-		
-	}//end addData method
+		this.add = add;
+	}//end AddPanel setter
+	
+	public void setNew(NewPanel newp)
+	{
+		this.newp = newp;
+	}//end NewPanel setter
+	
+	public void setRelationship(RelationshipPanel relation)
+	{
+		this.relation = relation;
+	}//end RelationshipPanel setter
+	
+	public void setLogin(LoginPanel login)
+	{
+		this.login = login;
+	}//end LoginPanel setter
+	
+	public void setUser(UserPanel user)
+	{
+		this.user = user;
+	}//end UserPanel setter
+	
+	public void setView(ViewPanel view)
+	{
+		this.view = view;
+	}//end ViewPanel setter
 	
 	public ArrayList<Object> getData()
 	{

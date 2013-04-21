@@ -19,8 +19,10 @@ public class AddPanel extends JPanel
 	private MainPanel panel;
 	private int curlevel;
 	 
-	public AddPanel()
+	public AddPanel(MainPanel panel)
 	{
+		this.panel = panel;
+		
 		chooser = new JFileChooser();
 	    filter = new FileNameExtensionFilter("JPG images","jpg");
 	    chooser.setFileFilter(filter);
