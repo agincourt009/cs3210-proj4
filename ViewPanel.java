@@ -34,11 +34,11 @@ public class ViewPanel extends JPanel
 		
 		if(login)
 		{
-			logout = new JButton("Logout");
+			logout = new JButton("Login");
 		}//end if statement
 		else
 		{
-			
+			logout = new JButton("Logout");
 		}//end else statement
 		add = new JButton("Add Photos");
 		
