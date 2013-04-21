@@ -1,6 +1,6 @@
 #include "encryption.h"
 #define BLOCKSIZE	1024
-int encrypt(FILE* in, FILE* out, char* str){
+int encrypt_p4(FILE* in, FILE* out, char* str){
 	
 	int instream_len, outstream_len, write_len;
 	unsigned char input_buff[BLOCKSIZE];
@@ -34,7 +34,7 @@ int encrypt(FILE* in, FILE* out, char* str){
 	return 1;
 }
 
-int decrypt(FILE* in, FILE* out, char* str){
+int decrypt_p4(FILE* in, FILE* out, char* str){
 	
 	int instream_len, outstream_len, write_len;
 	unsigned char input_buff[BLOCKSIZE];
