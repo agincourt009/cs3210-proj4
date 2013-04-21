@@ -1,10 +1,10 @@
 
 bb_init()
 
-bb_getattr(path="/", statbuf=0x9f6f6fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
+bb_getattr(path="/", statbuf=0x104cefe0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
     st_dev = 17
-    st_ino = 280415
+    st_ino = 280424
     st_mode = 040755
     st_nlink = 2
     st_uid = 396531
@@ -13,77 +13,12 @@ bb_getattr(path="/", statbuf=0x9f6f6fe0)
     st_size = 4096
     st_blksize = 32768
     st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744d14
-    st_ctime = 0x51744d14
+    st_atime = 0x517450c1
+    st_mtime = 0x517451da
+    st_ctime = 0x517451da
 
-bb_access(path="/", mask=01)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-
-bb_opendir(path="/", fi=0x9f6f7000)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x000000000063ec70
-    lock_owner = 0x0000000000000000
-
-bb_readdir(path="/", buf=0x0063ebf0, filler=0x9ff49840, offset=0, fi=0x9ff1a000)
-calling filler with name ..
-calling filler with name .
-    flags = 0x00000000
-    fh_old = 0x0063ec70
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x000000000063ec70
-    lock_owner = 0x0000000000000000
-
-bb_releasedir(path="/", fi=0x9ff1a000)
-    flags = 0x00000000
-    fh_old = 0x0063ec70
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x000000000063ec70
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x9f6f6fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-    st_dev = 17
-    st_ino = 280415
-    st_mode = 040755
-    st_nlink = 2
-    st_uid = 396531
-    st_gid = 2626
-    st_rdev = 0
-    st_size = 4096
-    st_blksize = 32768
-    st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744d14
-    st_ctime = 0x51744d14
-
-bb_getattr(path="/", statbuf=0x9ff19fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-    st_dev = 17
-    st_ino = 280415
-    st_mode = 040755
-    st_nlink = 2
-    st_uid = 396531
-    st_gid = 2626
-    st_rdev = 0
-    st_size = 4096
-    st_blksize = 32768
-    st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744d14
-    st_ctime = 0x51744d14
-
-bb_getattr(path="/gtbuzz.jpg", statbuf=0x9f6f6fd0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//gtbuzz.jpg"
+bb_getattr(path="/gtbuzz.jpg", statbuf=0x10cf1fd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
     ERROR bb_getattr lstat: No such file or directory
     st_dev = 0
     st_ino = 0
@@ -99,8 +34,8 @@ bb_getattr(path="/gtbuzz.jpg", statbuf=0x9f6f6fd0)
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 
-bb_getattr(path="/gtbuzz.jpg", statbuf=0x9ff19fd0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//gtbuzz.jpg"
+bb_getattr(path="/gtbuzz.jpg", statbuf=0x104cefd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
     ERROR bb_getattr lstat: No such file or directory
     st_dev = 0
     st_ino = 0
@@ -116,8 +51,8 @@ bb_getattr(path="/gtbuzz.jpg", statbuf=0x9ff19fd0)
     st_mtime = 0x00000000
     st_ctime = 0x00000000
 
-bb_create(path="/gtbuzz.jpg", mode=0100744, fi=0x9f6f70c0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//gtbuzz.jpg"
+bb_create(path="/gtbuzz.jpg", mode=0100744, fi=0x10cf20c0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
     flags = 0x00008041
     fh_old = 0x00000000
     writepage = 0
@@ -126,7 +61,7 @@ bb_create(path="/gtbuzz.jpg", mode=0100744, fi=0x9f6f70c0)
     fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
 
-bb_fgetattr(path="/gtbuzz.jpg", statbuf=0x9f6f6f90, fi=0x9f6f70c0)
+bb_fgetattr(path="/gtbuzz.jpg", statbuf=0x10cf1f90, fi=0x10cf20c0)
     flags = 0x00008041
     fh_old = 0x00000000
     writepage = 0
@@ -135,7 +70,7 @@ bb_fgetattr(path="/gtbuzz.jpg", statbuf=0x9f6f6f90, fi=0x9f6f70c0)
     fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
     st_dev = 17
-    st_ino = 6530
+    st_ino = 489373
     st_mode = 0100744
     st_nlink = 1
     st_uid = 396531
@@ -144,11 +79,11 @@ bb_fgetattr(path="/gtbuzz.jpg", statbuf=0x9f6f6f90, fi=0x9f6f70c0)
     st_size = 0
     st_blksize = 32768
     st_blocks = 0
-    st_atime = 0x51744e55
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
+    st_atime = 0x517451f4
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
 
-bb_write(path="/gtbuzz.jpg", buf=0x9ff1b050, size=4096, offset=0, fi=0x9ff1a0c0)
+bb_write(path="/gtbuzz.jpg", buf=0x104d0050, size=4096, offset=0, fi=0x104cf0c0)
     flags = 0x00000000
     fh_old = 0x00000005
     writepage = 0
@@ -157,7 +92,7 @@ bb_write(path="/gtbuzz.jpg", buf=0x9ff1b050, size=4096, offset=0, fi=0x9ff1a0c0)
     fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
 
-bb_write(path="/gtbuzz.jpg", buf=0x9f6f8050, size=4096, offset=4096, fi=0x9f6f70c0)
+bb_write(path="/gtbuzz.jpg", buf=0x10cf3050, size=4096, offset=4096, fi=0x10cf20c0)
     flags = 0x00000000
     fh_old = 0x00000005
     writepage = 0
@@ -166,7 +101,7 @@ bb_write(path="/gtbuzz.jpg", buf=0x9f6f8050, size=4096, offset=4096, fi=0x9f6f70
     fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
 
-bb_write(path="/gtbuzz.jpg", buf=0x9ff1b050, size=1396, offset=8192, fi=0x9ff1a0c0)
+bb_write(path="/gtbuzz.jpg", buf=0x104d0050, size=1396, offset=8192, fi=0x104cf0c0)
     flags = 0x00000000
     fh_old = 0x00000005
     writepage = 0
@@ -175,16 +110,16 @@ bb_write(path="/gtbuzz.jpg", buf=0x9ff1b050, size=1396, offset=8192, fi=0x9ff1a0
     fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
 
-bb_flush(path="/gtbuzz.jpg", fi=0x9f6f70c0)
+bb_flush(path="/gtbuzz.jpg", fi=0x10cf20c0)
     flags = 0x00000000
     fh_old = 0x00000005
     writepage = 0
     direct_io = 0
     keep_cache = 0
     fh = 0x0000000000000005
-    lock_owner = 0x0b87004b3ea75c64
+    lock_owner = 0xbc279abafc1fcedc
 
-bb_release(path="/gtbuzz.jpg", fi=0x9ff1a0c0)
+bb_release(path="/gtbuzz.jpg", fi=0x104cf0c0)
     flags = 0x00008001
     fh_old = 0x00000005
     writepage = 0
@@ -193,10 +128,10 @@ bb_release(path="/gtbuzz.jpg", fi=0x9ff1a0c0)
     fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x9f6f6fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
+bb_getattr(path="/", statbuf=0x10cf1fe0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
     st_dev = 17
-    st_ino = 280415
+    st_ino = 280424
     st_mode = 040755
     st_nlink = 2
     st_uid = 396531
@@ -205,15 +140,15 @@ bb_getattr(path="/", statbuf=0x9f6f6fe0)
     st_size = 4096
     st_blksize = 32768
     st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
+    st_atime = 0x517450c1
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
 
 bb_access(path="/", mask=01)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
 
-bb_opendir(path="/", fi=0x9f6f7000)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
+bb_opendir(path="/", fi=0x10cf2000)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
@@ -222,7 +157,7 @@ bb_opendir(path="/", fi=0x9f6f7000)
     fh = 0x000000000063ed10
     lock_owner = 0x0000000000000000
 
-bb_readdir(path="/", buf=0x0063ec90, filler=0x9ff49840, offset=0, fi=0x9ff1a000)
+bb_readdir(path="/", buf=0x0063ec90, filler=0x10d21840, offset=0, fi=0x104cf000)
 calling filler with name gtbuzz.jpg
 calling filler with name ..
 calling filler with name .
@@ -234,108 +169,10 @@ calling filler with name .
     fh = 0x000000000063ed10
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/gtbuzz.jpg", statbuf=0x9f6f6fd0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//gtbuzz.jpg"
+bb_getattr(path="/gtbuzz.jpg", statbuf=0x10cf1fd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
     st_dev = 17
-    st_ino = 6530
-    st_mode = 0100744
-    st_nlink = 1
-    st_uid = 396531
-    st_gid = 2626
-    st_rdev = 0
-    st_size = 9588
-    st_blksize = 32768
-    st_blocks = 0
-    st_atime = 0x51744e55
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
-
-bb_releasedir(path="/", fi=0x9f6f7000)
-    flags = 0x00000000
-    fh_old = 0x0063ed10
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x000000000063ed10
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x9ff19fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-    st_dev = 17
-    st_ino = 280415
-    st_mode = 040755
-    st_nlink = 2
-    st_uid = 396531
-    st_gid = 2626
-    st_rdev = 0
-    st_size = 4096
-    st_blksize = 32768
-    st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
-
-bb_getattr(path="/", statbuf=0x9f6f6fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-    st_dev = 17
-    st_ino = 280415
-    st_mode = 040755
-    st_nlink = 2
-    st_uid = 396531
-    st_gid = 2626
-    st_rdev = 0
-    st_size = 4096
-    st_blksize = 32768
-    st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
-
-bb_getattr(path="/", statbuf=0x9ff19fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-    st_dev = 17
-    st_ino = 280415
-    st_mode = 040755
-    st_nlink = 2
-    st_uid = 396531
-    st_gid = 2626
-    st_rdev = 0
-    st_size = 4096
-    st_blksize = 32768
-    st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
-
-bb_access(path="/", mask=01)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-
-bb_opendir(path="/", fi=0x9ff1a000)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x000000000063ed10
-    lock_owner = 0x0000000000000000
-
-bb_readdir(path="/", buf=0x0063ec90, filler=0x9ff49840, offset=0, fi=0x9f6f7000)
-calling filler with name gtbuzz.jpg
-calling filler with name ..
-calling filler with name .
-    flags = 0x00000000
-    fh_old = 0x0063ed10
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x000000000063ed10
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/gtbuzz.jpg", statbuf=0x9ff19fd0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//gtbuzz.jpg"
-    st_dev = 17
-    st_ino = 6530
+    st_ino = 489373
     st_mode = 0100744
     st_nlink = 1
     st_uid = 396531
@@ -344,11 +181,11 @@ bb_getattr(path="/gtbuzz.jpg", statbuf=0x9ff19fd0)
     st_size = 9588
     st_blksize = 32768
     st_blocks = 24
-    st_atime = 0x51744e55
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
+    st_atime = 0x517451f4
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
 
-bb_releasedir(path="/", fi=0x9ff1a000)
+bb_releasedir(path="/", fi=0x10cf2000)
     flags = 0x00000000
     fh_old = 0x0063ed10
     writepage = 0
@@ -357,26 +194,57 @@ bb_releasedir(path="/", fi=0x9ff1a000)
     fh = 0x000000000063ed10
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x9f6f6fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
-    st_dev = 17
-    st_ino = 280415
-    st_mode = 040755
-    st_nlink = 2
-    st_uid = 396531
-    st_gid = 2626
-    st_rdev = 0
-    st_size = 4096
-    st_blksize = 32768
-    st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
+bb_opendir(path="/", fi=0x104cf000)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063ed10
+    lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x9ff19fe0)
-    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/fuse_new/fuse-tutorial/example/rootdir/.p4_bckend//"
+bb_readdir(path="/", buf=0x0063ec90, filler=0x10d21840, offset=0, fi=0x10cf2000)
+calling filler with name gtbuzz.jpg
+calling filler with name ..
+calling filler with name .
+    flags = 0x00000000
+    fh_old = 0x0063ed10
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063ed10
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x10cf2000)
+    flags = 0x00000000
+    fh_old = 0x0063ed10
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000063ed10
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/gtbuzz.jpg", statbuf=0x104cefd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
     st_dev = 17
-    st_ino = 280415
+    st_ino = 489373
+    st_mode = 0100744
+    st_nlink = 1
+    st_uid = 396531
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9588
+    st_blksize = 32768
+    st_blocks = 24
+    st_atime = 0x517451f4
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
+
+bb_getattr(path="/", statbuf=0x10cf1fe0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
+    st_dev = 17
+    st_ino = 280424
     st_mode = 040755
     st_nlink = 2
     st_uid = 396531
@@ -385,8 +253,267 @@ bb_getattr(path="/", statbuf=0x9ff19fe0)
     st_size = 4096
     st_blksize = 32768
     st_blocks = 8
-    st_atime = 0x51744d14
-    st_mtime = 0x51744e55
-    st_ctime = 0x51744e55
+    st_atime = 0x517450c1
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
+
+bb_getattr(path="/display", statbuf=0x104cefd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/display", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//display"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/display", statbuf=0x10cf1fd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/display", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//display"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/display", statbuf=0x104cefd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/display", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//display"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/display", statbuf=0x10cf1fd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/display", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//display"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/display", statbuf=0x104cefd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/display", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//display"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/display", statbuf=0x10cf1fd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/display", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//display"
+    ERROR bb_getattr lstat: No such file or directory
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_open(path"/gtbuzz.jpg", fi=0x104cf0c0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_read(path="/gtbuzz.jpg", buf=0x0063ec90, size=12288, offset=0, fi=0x10cf20c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/gtbuzz.jpg", statbuf=0x104cefe0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
+    st_dev = 17
+    st_ino = 489373
+    st_mode = 0100744
+    st_nlink = 1
+    st_uid = 396531
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9588
+    st_blksize = 32768
+    st_blocks = 24
+    st_atime = 0x517451f4
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
+
+bb_flush(path="/gtbuzz.jpg", fi=0x10cf20c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0xbc279abafc1fcedc
+
+bb_release(path="/gtbuzz.jpg", fi=0x104cf0c0)
+    flags = 0x00008000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_open(path"/gtbuzz.jpg", fi=0x10cf20c0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
+    flags = 0x00008000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_read(path="/gtbuzz.jpg", buf=0x0063ec90, size=12288, offset=0, fi=0x104cf0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/gtbuzz.jpg", statbuf=0x10cf1fe0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
+    st_dev = 17
+    st_ino = 489373
+    st_mode = 0100744
+    st_nlink = 1
+    st_uid = 396531
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9588
+    st_blksize = 32768
+    st_blocks = 24
+    st_atime = 0x517451f4
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
+
+bb_flush(path="/gtbuzz.jpg", fi=0x104cf0c0)
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0xbc279abafc1fcedc
+
+bb_release(path="/gtbuzz.jpg", fi=0x10cf20c0)
+    flags = 0x00008000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/gtbuzz.jpg", statbuf=0x104cefd0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/gtbuzz.jpg", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//gtbuzz.jpg"
+    st_dev = 17
+    st_ino = 489373
+    st_mode = 0100744
+    st_nlink = 1
+    st_uid = 396531
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 9588
+    st_blksize = 32768
+    st_blocks = 24
+    st_atime = 0x517451f4
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
+
+bb_access(path="/", mask=01)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
+
+bb_getattr(path="/", statbuf=0x104cefe0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
+    st_dev = 17
+    st_ino = 280424
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 396531
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x517450c1
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
+
+bb_getattr(path="/", statbuf=0x10cf1fe0)
+    bb_bkend_path:  bkend_dir = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend/", path = "/", fpath = "/nethome/sliang32/cs3210-proj4/cs3210-proj4/example/rootdir/.p4_bckend//"
+    st_dev = 17
+    st_ino = 280424
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 396531
+    st_gid = 2626
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 32768
+    st_blocks = 8
+    st_atime = 0x517450c1
+    st_mtime = 0x517451f4
+    st_ctime = 0x517451f4
 
 bb_destroy(userdata=0x00605010)
