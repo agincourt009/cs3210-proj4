@@ -86,9 +86,6 @@ public class LoginPanel extends JPanel
 				{
 					JOptionPane.showMessageDialog(panel, "The username and password entered do not match.\nPlease try again.");
 					panel.logout();
-					panel.getContentPane().removeAll();
-					panel.getContentPane().add(panel.getLogin());
-					panel.update(panel.getG());
 				}//end else statement
 			}//end if statement
 			else if(e.getSource()==create)

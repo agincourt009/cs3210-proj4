@@ -23,7 +23,6 @@ public class MainPanel extends JFrame
 	private User curUser;
 	private RelationshipList relations;
 	private ControlList control;
-	private Graphics g;
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
@@ -112,31 +111,27 @@ public class MainPanel extends JFrame
 	{
 		curlevel = 0;
 		curUser = null;
-		this.getContentPane().removeAll();
-		this.getContentPane().add(login);
-		this.update(g);
+		this.setContentPane(login);
+		this.validate();
 	}//end logout method
 	
 	public void switchAdd()
 	{
-		this.getContentPane().removeAll();
-		this.getContentPane().add(add);
-		this.update(g);
+		this.setContentPane(add);
+		this.validate();
 	}//end switchAdd method
 	
 	public void switchUser()
 	{
-		this.getContentPane().removeAll();
-		this.getContentPane().add(user);
-		this.update(g);
-	}//en switchUser method
+		this.setContentPane(user);
+		this.validate();
+	}//end switchUser method
 	
 	public void switchView(boolean login)
 	{
 		view.setLogin(login);
-		this.getContentPane().removeAll();
-		this.getContentPane().add(view);
-		this.update(g);
+		this.setContentPane(view);
+		this.validate();
 	}//end switchView method
 	
 	public void switchNew()
@@ -147,9 +142,8 @@ public class MainPanel extends JFrame
 	
 	public void switchRelationship()
 	{
-		this.getContentPane().removeAll();
-		this.getContentPane().add(relation);
-		this.update(g);
+		this.setContentPane(relation);
+		this.validate();
 	}//end switchNew method
 	
 	public void setAdd(AddPanel add)
@@ -257,11 +251,6 @@ public class MainPanel extends JFrame
 	{
 		return control;
 	}//end control getter
-	
-	public Graphics getG()
-	{
-		return g;
-	}//end g getter
 	
 	public void saveControl()
 	{
