@@ -63,7 +63,6 @@ public class LoginPanel extends JPanel
 				CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 				char[] temp= text.getPassword();
 				String pass = new String(temp);
-				JOptionPane.showMessageDialog(panel, pass);
 				String usern = user.getText();
 				
 				Memory passmem = new Memory(pass.length());
@@ -95,7 +94,9 @@ public class LoginPanel extends JPanel
 			else if(e.getSource()==create)
 			{
 				panel.getContentPane().removeAll();
-				panel.getContentPane().add(panel.getNew());
+				NewPanel newp = new NewPanel(panel);
+				panel.getContentPane().add(newp);
+				panel.setNew(newp);
 			}//end else if statement
 			else
 			{

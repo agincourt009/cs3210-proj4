@@ -52,7 +52,6 @@ public class NewPanel extends JPanel
 			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 			char[] temp= text.getPassword();
 			String pass = new String(temp);
-			JOptionPane.showMessageDialog(panel, pass);
 			String usern = user.getText();
 				
 			Memory passmem = new Memory(pass.length());
