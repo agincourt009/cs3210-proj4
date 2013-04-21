@@ -141,9 +141,8 @@ public class MainPanel extends JFrame
 	
 	public void switchNew()
 	{
-		this.getContentPane().removeAll();
-		this.getContentPane().add(newp);
-		this.update(g);
+		this.setContentPane(newp);
+		this.validate();
 	}//end switchNew method
 	
 	public void switchRelationship()
