@@ -99,6 +99,7 @@ public class MainPanel extends JFrame
 	public void logout()
 	{
 		curlevel = 0;
+		curUser = null;
 		this.getContentPane().removeAll();
 		this.getContentPane().add(login);
 	}//end logout method
@@ -115,8 +116,9 @@ public class MainPanel extends JFrame
 		this.getContentPane().add(user);
 	}//en switchUser method
 	
-	public void switchView()
+	public void switchView(boolean login)
 	{
+		view.setLogin(login);
 		this.getContentPane().removeAll();
 		this.getContentPane().add(view);
 	}//end switchView method

@@ -24,13 +24,14 @@ public class ViewPanel extends JPanel
 	private MainPanel panel;
 	private boolean prevSelect;
 	private File file;
+	private boolean login;
 	 
 	public ViewPanel()
 	{	
 		prevSelect=false;
 		instructions = new JLabel("Click on the name of the photo you would like to view\nand it will show up on the right.");
 		
-		if(panel.getCurlevel()==4)
+		if(login)
 		{
 			logout = new JButton("Logout");
 		}//end if statement
@@ -80,6 +81,11 @@ public class ViewPanel extends JPanel
 	{
 		this.panel = panel;
 	}//end setPanel method
+	
+	public void setLogin(boolean state)
+	{
+		login = state;
+	}//end login setter
 	
 	public interface CStdLib extends Library 
 	{

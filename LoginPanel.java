@@ -92,7 +92,7 @@ public class LoginPanel extends JPanel
 			else
 			{
 				panel.setCurlevel(4);
-				panel.switchView();
+				panel.switchView(true);
 			}//end else statement
 		}//end ActionPerformed method
 	}//end ButtonsListener class

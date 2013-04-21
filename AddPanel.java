@@ -120,7 +120,7 @@ public class AddPanel extends JPanel
 			}//end else if statement
 			else if(e.getSource()==view)
 			{
-				panel.switchView();
+				panel.switchView(false);
 			}
 			else
 			{

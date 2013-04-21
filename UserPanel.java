@@ -67,7 +67,7 @@ public class UserPanel extends JPanel
 			}//end else if statement
 			else
 			{
-				panel.switchView();
+				panel.switchView(false);
 			}
 		}//end ActionPerformed method
 	}//end ButtonListener class
