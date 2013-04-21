@@ -10,7 +10,7 @@
 
 #define BLOCKSIZE	1024
 
-int encrypt(FILE* in, FILE* out, char* str);
-int decrypt(FILE* in, FILE* out, char* str);
+int encrypt_p4(FILE* in, FILE* out, char* str);
+int decrypt_p4(FILE* in, FILE* out, char* str);
 
 #endif
