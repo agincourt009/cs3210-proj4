@@ -23,6 +23,62 @@ public class MainPanel extends JFrame
 	private RelationshipList relations;
 	private ControlList control;
 	
+	public static void main(String[] args)
+	{
+		ViewPanel view = new ViewPanel();
+		LoginPanel login = new LoginPanel();
+		AddPanel add = new AddPanel();
+		UserPanel user = new UserPanel();
+		NewPanel newp = new NewPanel();
+		RelationshipPanel relation = new RelationshipPanel();
+		RelationshipList relations = new RelationshipList();
+		ControlList control = new ControlList();
+		
+		MainPanel panel = new MainPanel(view, login, add, user, newp, relation, relations, control);
+		
+		try
+	    {
+	         FileInputStream fileIn = new FileInputStream("relations.ser");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         relations = (RelationshipList) in.readObject();
+	         in.close();
+	         fileIn.close();
+	         
+	         fileIn = new FileInputStream("control.ser");
+	         in = new ObjectInputStream(fileIn);
+	         control = (ControlList) in.readObject();
+	         in.close();
+	         fileIn.close();
+	    }//end try block
+		catch(IOException i)
+	    {
+	         i.printStackTrace();
+	         return;
+	    }//end catch block
+		catch(ClassNotFoundException c)
+	    {
+	         System.out.println("RelationshipList or ControlList class not found.");
+	         c.printStackTrace();
+	         return;
+	    }//end catch block
+		
+		panel.setPreferredSize(new Dimension(500,500));
+		
+		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		view.setPanel(panel);
+		login.setPanel(panel);
+		add.setPanel(panel);
+		user.setPanel(panel);
+		newp.setPanel(panel);
+		relation.setPanel(panel);
+		
+		panel.getContentPane().add(login);
+		
+		panel.pack();
+		panel.setVisible(true);
+	}//end main method
+
 	public MainPanel(ViewPanel view, LoginPanel login, AddPanel add, UserPanel user, NewPanel newp, RelationshipPanel relation, RelationshipList relations, ControlList control)
 	{
 		this.view = view;
@@ -33,7 +89,8 @@ public class MainPanel extends JFrame
 		this.relation = relation;
 		this.relations = relations;
 		this.control = control;
-		
+		curlevel = 0;		
+
 		CloseHandler close = new CloseHandler();
 		addWindowListener(close);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -168,60 +225,4 @@ public class MainPanel extends JFrame
 			  System.exit(0);
 		  }
 	}//end CloseHandler class
-	
-	public static void main(String[] args)
-	{
-		ViewPanel view = new ViewPanel();
-		LoginPanel login = new LoginPanel();
-		AddPanel add = new AddPanel();
-		UserPanel user = new UserPanel();
-		NewPanel newp = new NewPanel();
-		RelationshipPanel relation = new RelationshipPanel();
-		RelationshipList relations = new RelationshipList();
-		ControlList control = new ControlList();
-		
-		MainPanel panel = new MainPanel(view, login, add, user, newp, relation, relations, control);
-		
-		try
-	    {
-	         FileInputStream fileIn = new FileInputStream("relations.ser");
-	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         relations = (RelationshipList) in.readObject();
-	         in.close();
-	         fileIn.close();
-	         
-	         fileIn = new FileInputStream("control.ser");
-	         in = new ObjectInputStream(fileIn);
-	         control = (ControlList) in.readObject();
-	         in.close();
-	         fileIn.close();
-	    }//end try block
-		catch(IOException i)
-	    {
-	         i.printStackTrace();
-	         return;
-	    }//end catch block
-		catch(ClassNotFoundException c)
-	    {
-	         System.out.println("RelationshipList or ControlList class not found.");
-	         c.printStackTrace();
-	         return;
-	    }//end catch block
-		
-		panel.setPreferredSize(new Dimension(500,500));
-		
-		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		view.setPanel(panel);
-		login.setPanel(panel);
-		add.setPanel(panel);
-		user.setPanel(panel);
-		newp.setPanel(panel);
-		relation.setPanel(panel);
-		
-		panel.getContentPane().add(login);
-		
-		panel.pack();
-		panel.setVisible(true);
-	}//end main method
 }//end MainPanel class
