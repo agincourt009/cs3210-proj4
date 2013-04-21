@@ -41,7 +41,7 @@ public class RelationshipPanel extends JPanel
 		
 		add = new JButton("Add");
 		
-		setPreferredSize(new Dimension(400,700));
+		setPreferredSize(new Dimension(700,400));
 		
 		ChoiceListener log = new ChoiceListener();
 		logout.addActionListener(log);

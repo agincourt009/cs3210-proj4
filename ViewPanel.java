@@ -42,7 +42,7 @@ public class ViewPanel extends JPanel
 		}//end else statement
 		add = new JButton("Add Photos");
 		
-		setPreferredSize(new Dimension(400,700));
+		setPreferredSize(new Dimension(700,400));
 		
 		pictureframe = new JLabel();
 		

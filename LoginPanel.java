@@ -25,7 +25,7 @@ public class LoginPanel extends JPanel
 		view = new JButton("Open Access");
 		create = new JButton("Create Account");
 		
-		setPreferredSize(new Dimension(400,700));
+		setPreferredSize(new Dimension(700,400));
 		
 		ButtonsListener log = new ButtonsListener();
 		login.addActionListener(log);
@@ -62,7 +62,7 @@ public class LoginPanel extends JPanel
 			{
 				CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 				char[] temp= text.getPassword();
-				String pass = temp.toString();
+				String pass = new String(temp);
 				JOptionPane.showMessageDialog(panel, pass);
 				String usern = user.getText();
 				
@@ -87,11 +87,15 @@ public class LoginPanel extends JPanel
 				{
 					JOptionPane.showMessageDialog(panel, "The username and password entered do not match.\nPlease try again.");
 					panel.logout();
+					panel.getContentPane().removeAll();
+					panel.getContentPane().add(panel.getLogin());
+					panel.update(panel.getG());
 				}//end else statement
 			}//end if statement
 			else if(e.getSource()==create)
 			{
-				panel.switchNew();
+				panel.getContentPane().removeAll();
+				panel.getContentPane().add(panel.getNew());
 			}//end else if statement
 			else
 			{

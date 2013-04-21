@@ -86,7 +86,7 @@ public class MainPanel extends JFrame
 	         return;
 	    }//end catch block
 		
-		panel.setPreferredSize(new Dimension(500,800));
+		panel.setPreferredSize(new Dimension(800,500));
 		
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -183,6 +183,36 @@ public class MainPanel extends JFrame
 		this.view = view;
 	}//end ViewPanel setter
 	
+	public LoginPanel getLogin()
+	{
+		return login;
+	}//end login getter
+	
+	public AddPanel getAdd()
+	{
+		return add;
+	}//end add getter
+	
+	public UserPanel getUser()
+	{
+		return user;
+	}//end user getter
+	
+	public RelationshipPanel getRelationship()
+	{
+		return relation;
+	}//end relation getter
+	
+	public NewPanel getNew()
+	{
+		return newp;
+	}//end newp getter
+	
+	public ViewPanel getView()
+	{
+		return view;
+	}//end view getter
+	
 	public ArrayList<Object> getData()
 	{
 		ArrayList<Object> data = new ArrayList<Object>();
@@ -228,6 +258,11 @@ public class MainPanel extends JFrame
 	{
 		return control;
 	}//end control getter
+	
+	public Graphics getG()
+	{
+		return g;
+	}//end g getter
 	
 	public void saveControl()
 	{

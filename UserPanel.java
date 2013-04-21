@@ -24,7 +24,7 @@ public class UserPanel extends JPanel
 		addrelation = new JButton("Add Friends or Family");
 		
 		
-		setPreferredSize(new Dimension(400,700));
+		setPreferredSize(new Dimension(700,400));
 		
 		ButtonListener log = new ButtonListener();
 		logout.addActionListener(log);

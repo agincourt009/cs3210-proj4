@@ -24,7 +24,7 @@ public class NewPanel extends JPanel
 
 		create = new JButton("Create");
 		
-		setPreferredSize(new Dimension(400,700));
+		setPreferredSize(new Dimension(700,400));
 		
 		CreateListener creat = new CreateListener();
 		create.addActionListener(creat);
@@ -51,7 +51,7 @@ public class NewPanel extends JPanel
 		{
 			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 			char[] temp= text.getPassword();
-			String pass = temp.toString();
+			String pass = new String(temp);
 			JOptionPane.showMessageDialog(panel, pass);
 			String usern = user.getText();
 				
