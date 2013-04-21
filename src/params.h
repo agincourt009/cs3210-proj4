@@ -23,11 +23,10 @@
 // maintain bbfs state in here
 #include <limits.h>
 #include <stdio.h>
-struct bb_state {
-    FILE *logfile;
+struct p4_state {
     char *rootdir;
     char *bkend_dir;
 };
-#define BB_DATA ((struct bb_state *) fuse_get_context()->private_data)
+#define P4_DATA ((struct p4_state *) fuse_get_context()->private_data)
 
 #endif
