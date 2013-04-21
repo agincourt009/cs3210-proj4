@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,7 +24,7 @@ public class MainPanel extends JFrame
 	private RelationshipList relations;
 	private ControlList control;
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws FileNotFoundException
 	{
 		RelationshipList relations = new RelationshipList();
 		ControlList control = new ControlList();
@@ -57,6 +58,21 @@ public class MainPanel extends JFrame
 	         in.close();
 	         fileIn.close();
 	    }//end try block
+		catch(FileNotFoundException e)
+		{
+			try
+			{
+				FileOutputStream file1 = new FileOutputStream("relations.ser");
+				file1.close();
+				FileOutputStream file2 = new FileOutputStream("control.ser");
+				file2.close();
+			}//end try block
+			catch(IOException io)
+			{
+				io.printStackTrace();
+				return;
+			}
+		}//end catch block
 		catch(IOException i)
 	    {
 	         i.printStackTrace();
