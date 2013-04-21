@@ -23,6 +23,7 @@ public class MainPanel extends JFrame
 	private User curUser;
 	private RelationshipList relations;
 	private ControlList control;
+	private Graphics g;
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
@@ -85,7 +86,7 @@ public class MainPanel extends JFrame
 	         return;
 	    }//end catch block
 		
-		panel.setPreferredSize(new Dimension(500,500));
+		panel.setPreferredSize(new Dimension(500,800));
 		
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -113,18 +114,21 @@ public class MainPanel extends JFrame
 		curUser = null;
 		this.getContentPane().removeAll();
 		this.getContentPane().add(login);
+		this.update(g);
 	}//end logout method
 	
 	public void switchAdd()
 	{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(add);
+		this.update(g);
 	}//end switchAdd method
 	
 	public void switchUser()
 	{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(user);
+		this.update(g);
 	}//en switchUser method
 	
 	public void switchView(boolean login)
@@ -132,18 +136,21 @@ public class MainPanel extends JFrame
 		view.setLogin(login);
 		this.getContentPane().removeAll();
 		this.getContentPane().add(view);
+		this.update(g);
 	}//end switchView method
 	
 	public void switchNew()
 	{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(newp);
+		this.update(g);
 	}//end switchNew method
 	
 	public void switchRelationship()
 	{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(relation);
+		this.update(g);
 	}//end switchNew method
 	
 	public void setAdd(AddPanel add)

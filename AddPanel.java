@@ -53,7 +53,7 @@ public class AddPanel extends JPanel
 		
 		view = new JButton("View Photos");
 		
-		setPreferredSize(new Dimension(400,400));
+		setPreferredSize(new Dimension(400,700));
 		
 		RadioListener log = new RadioListener();
 		logout.addActionListener(log);
