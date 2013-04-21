@@ -10,8 +10,9 @@ public class UserPanel extends JPanel
 	private JLabel instructions;
 	private MainPanel panel;
 	 
-	public UserPanel()
+	public UserPanel(MainPanel panel)
 	{
+		this.panel = panel;
 		instructions = new JLabel("Would you like to view photos, add photos,\nadd friends or family, or logout?");
 		
 		logout = new JButton("Logout");
@@ -23,7 +24,7 @@ public class UserPanel extends JPanel
 		addrelation = new JButton("Add Friends or Family");
 		
 		
-		setPreferredSize(new Dimension(400,400));
+		setPreferredSize(new Dimension(700,400));
 		
 		ButtonListener log = new ButtonListener();
 		logout.addActionListener(log);
@@ -67,7 +68,7 @@ public class UserPanel extends JPanel
 			}//end else if statement
 			else
 			{
-				panel.switchView();
+				panel.switchView(false);
 			}
 		}//end ActionPerformed method
 	}//end ButtonListener class

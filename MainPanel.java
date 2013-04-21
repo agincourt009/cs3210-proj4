@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,19 +23,27 @@ public class MainPanel extends JFrame
 	private User curUser;
 	private RelationshipList relations;
 	private ControlList control;
+	private Graphics g;
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws FileNotFoundException
 	{
-		ViewPanel view = new ViewPanel();
-		LoginPanel login = new LoginPanel();
-		AddPanel add = new AddPanel();
-		UserPanel user = new UserPanel();
-		NewPanel newp = new NewPanel();
-		RelationshipPanel relation = new RelationshipPanel();
 		RelationshipList relations = new RelationshipList();
 		ControlList control = new ControlList();
 		
-		MainPanel panel = new MainPanel(view, login, add, user, newp, relation, relations, control);
+		MainPanel panel = new MainPanel(relations, control);
+		
+		ViewPanel view = new ViewPanel(panel);
+		panel.setView(view);
+		LoginPanel login = new LoginPanel(panel);
+		panel.setLogin(login);
+		AddPanel add = new AddPanel(panel);
+		panel.setAdd(add);
+		UserPanel user = new UserPanel(panel);
+		panel.setUser(user);
+		NewPanel newp = new NewPanel(panel);
+		panel.setNew(newp);
+		RelationshipPanel relation = new RelationshipPanel(panel);
+		panel.setRelationship(relation);
 		
 		try
 	    {
@@ -50,6 +59,21 @@ public class MainPanel extends JFrame
 	         in.close();
 	         fileIn.close();
 	    }//end try block
+		catch(FileNotFoundException e)
+		{
+			try
+			{
+				FileOutputStream file1 = new FileOutputStream("relations.ser");
+				file1.close();
+				FileOutputStream file2 = new FileOutputStream("control.ser");
+				file2.close();
+			}//end try block
+			catch(IOException io)
+			{
+				io.printStackTrace();
+				return;
+			}
+		}//end catch block
 		catch(IOException i)
 	    {
 	         i.printStackTrace();
@@ -62,16 +86,9 @@ public class MainPanel extends JFrame
 	         return;
 	    }//end catch block
 		
-		panel.setPreferredSize(new Dimension(500,500));
+		panel.setPreferredSize(new Dimension(800,500));
 		
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		view.setPanel(panel);
-		login.setPanel(panel);
-		add.setPanel(panel);
-		user.setPanel(panel);
-		newp.setPanel(panel);
-		relation.setPanel(panel);
 		
 		panel.getContentPane().add(login);
 		
@@ -79,17 +96,12 @@ public class MainPanel extends JFrame
 		panel.setVisible(true);
 	}//end main method
 
-	public MainPanel(ViewPanel view, LoginPanel login, AddPanel add, UserPanel user, NewPanel newp, RelationshipPanel relation, RelationshipList relations, ControlList control)
+	public MainPanel(RelationshipList relations, ControlList control)
 	{
-		this.view = view;
-		this.login = login;
-		this.add = add;
-		this.user = user;
-		this.newp = newp;
-		this.relation = relation;
 		this.relations = relations;
 		this.control = control;
-		curlevel = 0;		
+		curlevel = 0;
+		curUser = null;
 
 		CloseHandler close = new CloseHandler();
 		addWindowListener(close);
@@ -99,44 +111,107 @@ public class MainPanel extends JFrame
 	public void logout()
 	{
 		curlevel = 0;
+		curUser = null;
 		this.getContentPane().removeAll();
 		this.getContentPane().add(login);
+		this.update(g);
 	}//end logout method
 	
 	public void switchAdd()
 	{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(add);
+		this.update(g);
 	}//end switchAdd method
 	
 	public void switchUser()
 	{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(user);
+		this.update(g);
 	}//en switchUser method
 	
-	public void switchView()
+	public void switchView(boolean login)
 	{
+		view.setLogin(login);
 		this.getContentPane().removeAll();
 		this.getContentPane().add(view);
+		this.update(g);
 	}//end switchView method
 	
 	public void switchNew()
 	{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(newp);
+		this.update(g);
 	}//end switchNew method
 	
 	public void switchRelationship()
 	{
 		this.getContentPane().removeAll();
 		this.getContentPane().add(relation);
+		this.update(g);
 	}//end switchNew method
 	
-	public void addData()
+	public void setAdd(AddPanel add)
 	{
-		
-	}//end addData method
+		this.add = add;
+	}//end AddPanel setter
+	
+	public void setNew(NewPanel newp)
+	{
+		this.newp = newp;
+	}//end NewPanel setter
+	
+	public void setRelationship(RelationshipPanel relation)
+	{
+		this.relation = relation;
+	}//end RelationshipPanel setter
+	
+	public void setLogin(LoginPanel login)
+	{
+		this.login = login;
+	}//end LoginPanel setter
+	
+	public void setUser(UserPanel user)
+	{
+		this.user = user;
+	}//end UserPanel setter
+	
+	public void setView(ViewPanel view)
+	{
+		this.view = view;
+	}//end ViewPanel setter
+	
+	public LoginPanel getLogin()
+	{
+		return login;
+	}//end login getter
+	
+	public AddPanel getAdd()
+	{
+		return add;
+	}//end add getter
+	
+	public UserPanel getUser()
+	{
+		return user;
+	}//end user getter
+	
+	public RelationshipPanel getRelationship()
+	{
+		return relation;
+	}//end relation getter
+	
+	public NewPanel getNew()
+	{
+		return newp;
+	}//end newp getter
+	
+	public ViewPanel getView()
+	{
+		return view;
+	}//end view getter
 	
 	public ArrayList<Object> getData()
 	{
@@ -183,6 +258,11 @@ public class MainPanel extends JFrame
 	{
 		return control;
 	}//end control getter
+	
+	public Graphics getG()
+	{
+		return g;
+	}//end g getter
 	
 	public void saveControl()
 	{

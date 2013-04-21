@@ -2,26 +2,29 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
 import com.sun.jna.*;
 
 public class NewPanel extends JPanel
 {
 	private MainPanel panel;
 	private static final long serialVersionUID = 1L;
-	private JTextField text, user;
+	private JTextField user;
+	private JPasswordField text;
 	private JButton create;
 	private JLabel instructions;
 
-	public NewPanel()
+	public NewPanel(MainPanel panel)
 	{
-instructions = new JLabel("Type a new username and password, and hit the 'Create' button.");
+		this.panel = panel;
+		instructions = new JLabel("Type a new username and password, and hit the 'Create' button.");
 		
-		text = new JTextField("Password"); 
+		text = new JPasswordField("Password"); 
 		user = new JTextField("Username");
 
 		create = new JButton("Create");
 		
-		setPreferredSize(new Dimension(400,400));
+		setPreferredSize(new Dimension(700,400));
 		
 		CreateListener creat = new CreateListener();
 		create.addActionListener(creat);
@@ -47,7 +50,8 @@ instructions = new JLabel("Type a new username and password, and hit the 'Create
 		public void actionPerformed(ActionEvent e)
 		{
 			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
-			String pass= text.getText();
+			char[] temp= text.getPassword();
+			String pass = new String(temp);
 			String usern = user.getText();
 				
 			Memory passmem = new Memory(pass.length());

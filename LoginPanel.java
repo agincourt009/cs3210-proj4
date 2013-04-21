@@ -7,23 +7,25 @@ import java.awt.event.ActionListener;
 public class LoginPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
-	private JTextField text, user;
+	private JTextField user;
+	private JPasswordField text;
 	private JButton login, view, create;
 	private JLabel instructions;
 	private MainPanel panel;
 	 
-	public LoginPanel()
+	public LoginPanel(MainPanel panel)
 	{
+		this.panel = panel;
 		instructions = new JLabel("Enter your username and password to login, create a new\naccount,or click the 'View Public' button to view public photos.");
 		
-		text = new JTextField("Password"); 
+		text = new JPasswordField("Password"); 
 		user = new JTextField("Username");
 		
 		login = new JButton("Login");
-		view = new JButton("Open Access");
+		view = new JButton("View Public");
 		create = new JButton("Create Account");
 		
-		setPreferredSize(new Dimension(400,400));
+		setPreferredSize(new Dimension(700,400));
 		
 		ButtonsListener log = new ButtonsListener();
 		login.addActionListener(log);
@@ -59,7 +61,8 @@ public class LoginPanel extends JPanel
 			if(e.getSource()==login)
 			{
 				CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
-				String pass= text.getText();
+				char[] temp= text.getPassword();
+				String pass = new String(temp);
 				String usern = user.getText();
 				
 				Memory passmem = new Memory(pass.length());
@@ -83,16 +86,20 @@ public class LoginPanel extends JPanel
 				{
 					JOptionPane.showMessageDialog(panel, "The username and password entered do not match.\nPlease try again.");
 					panel.logout();
+					panel.getContentPane().removeAll();
+					panel.getContentPane().add(panel.getLogin());
+					panel.update(panel.getG());
 				}//end else statement
 			}//end if statement
 			else if(e.getSource()==create)
 			{
-				panel.switchNew();
+				panel.setContentPane(panel.getNew());
+				panel.update(panel.getG());
 			}//end else if statement
 			else
 			{
 				panel.setCurlevel(4);
-				panel.switchView();
+				panel.switchView(true);
 			}//end else statement
 		}//end ActionPerformed method
 	}//end ButtonsListener class

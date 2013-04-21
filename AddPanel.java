@@ -19,8 +19,10 @@ public class AddPanel extends JPanel
 	private MainPanel panel;
 	private int curlevel;
 	 
-	public AddPanel()
+	public AddPanel(MainPanel panel)
 	{
+		this.panel = panel;
+		
 		chooser = new JFileChooser();
 	    filter = new FileNameExtensionFilter("JPG images","jpg");
 	    chooser.setFileFilter(filter);
@@ -51,7 +53,7 @@ public class AddPanel extends JPanel
 		
 		view = new JButton("View Photos");
 		
-		setPreferredSize(new Dimension(400,400));
+		setPreferredSize(new Dimension(700,400));
 		
 		RadioListener log = new RadioListener();
 		logout.addActionListener(log);
@@ -120,7 +122,7 @@ public class AddPanel extends JPanel
 			}//end else if statement
 			else if(e.getSource()==view)
 			{
-				panel.switchView();
+				panel.switchView(false);
 			}
 			else
 			{

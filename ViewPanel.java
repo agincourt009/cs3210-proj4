@@ -24,23 +24,25 @@ public class ViewPanel extends JPanel
 	private MainPanel panel;
 	private boolean prevSelect;
 	private File file;
+	private boolean login;
 	 
-	public ViewPanel()
+	public ViewPanel(MainPanel panel)
 	{	
+		this.panel = panel;
 		prevSelect=false;
 		instructions = new JLabel("Click on the name of the photo you would like to view\nand it will show up on the right.");
 		
-		if(panel.getCurlevel()==4)
+		if(login)
 		{
-			logout = new JButton("Logout");
+			logout = new JButton("Login");
 		}//end if statement
 		else
 		{
-			
+			logout = new JButton("Logout");
 		}//end else statement
 		add = new JButton("Add Photos");
 		
-		setPreferredSize(new Dimension(400,400));
+		setPreferredSize(new Dimension(700,400));
 		
 		pictureframe = new JLabel();
 		
@@ -80,6 +82,11 @@ public class ViewPanel extends JPanel
 	{
 		this.panel = panel;
 	}//end setPanel method
+	
+	public void setLogin(boolean state)
+	{
+		login = state;
+	}//end login setter
 	
 	public interface CStdLib extends Library 
 	{
