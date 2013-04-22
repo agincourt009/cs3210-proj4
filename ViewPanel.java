@@ -105,7 +105,15 @@ public class ViewPanel extends JPanel
 			}//end if statement
 			else if (e.getSource()==add)
 			{
-				panel.switchAdd();
+				if(panel.getCurUser().getUser().equals("Everyone"))
+				{
+					JOptionPane.showMessageDialog(panel,"Please login before adding photos.");
+					panel.switchView(true);
+				}//end if statement
+				else
+				{
+					panel.switchAdd();
+				}//end else statement
 			}//end else statement
 		}//end ActionPerformed method
 	}//end ButtonListener class

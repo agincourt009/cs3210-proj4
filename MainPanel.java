@@ -143,7 +143,7 @@ public class MainPanel extends JFrame
 		}//end if statement
 		else
 		{
-			ViewPanel viewOut = new ViewPanel(this, "Login");
+			ViewPanel viewOut = new ViewPanel(this, "Logout");
 			this.setContentPane(viewOut);
 			this.validate();
 		}//end else statement
