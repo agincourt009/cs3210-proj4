@@ -39,12 +39,12 @@ int p4_getattr(const char *path, struct stat *statbuf)
 	int retstat = 0;
 	char fpath[PATH_MAX];
  
-	if(syscall(290)){   	
+//	if(syscall(290)){   	
 		p4_bkend_path(fpath, path);
     		retstat = lstat(fpath, statbuf);
 		if (retstat != 0)
 			return -errno;
-	}
+//	}
 	return retstat;
 }
 
@@ -53,7 +53,7 @@ int p4_readlink(const char *path, char *link, size_t size)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		retstat = readlink(fpath, link, size - 1);
 		if (retstat < 0)
@@ -62,7 +62,7 @@ int p4_readlink(const char *path, char *link, size_t size)
 			link[retstat] = '\0';
 			retstat = 0;
 		}
-	}	
+	//}	
     	return retstat;
 }
 
@@ -71,7 +71,7 @@ int p4_mknod(const char *path, mode_t mode, dev_t dev)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     	
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		if(S_ISREG(mode)){
         		retstat = open(fpath, O_CREAT | O_EXCL | O_WRONLY, mode);
@@ -91,7 +91,7 @@ int p4_mknod(const char *path, mode_t mode, dev_t dev)
 	    		if(retstat < 0)
 				return -errno;
     		}
-	}
+	//}
 	return retstat;
 }
 
@@ -100,12 +100,12 @@ int p4_mkdir(const char *path, mode_t mode)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		retstat = mkdir(fpath, mode);
 		if(retstat < 0)
 			return -errno;
-    	}
+    	//}
 	return retstat;
 }
 
@@ -114,12 +114,12 @@ int p4_unlink(const char *path)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		retstat = unlink(fpath);
 		if(retstat < 0)
 			return -errno;
-	}	
+	//}	
 	return retstat;
 }	
 
@@ -128,12 +128,12 @@ int p4_rmdir(const char *path)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		retstat = rmdir(fpath);
 		if (retstat < 0)
 			return -errno;
-    	}
+    	//}
 	return retstat;
 }
 
@@ -142,12 +142,12 @@ int p4_symlink(const char *path, const char *link)
 	int retstat = 0;
 	char flink[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(flink, link);
     		retstat = symlink(path, flink);
 		if(retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -157,13 +157,13 @@ int p4_rename(const char *path, const char *newpath)
 	char fpath[PATH_MAX];
 	char fnewpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		p4_bkend_path(fnewpath, newpath);
     		retstat = rename(fpath, fnewpath);
 		if(retstat < 0)
 			return -errno;
-	}	
+	//}	
 	return retstat;
 }
 
@@ -172,13 +172,13 @@ int p4_link(const char *path, const char *newpath)
 	int retstat = 0;
 	char fpath[PATH_MAX], fnewpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		p4_bkend_path(fnewpath, newpath);
 		retstat = link(fpath, fnewpath);
 		if(retstat < 0)
     			return -errno;
-	}
+	//}
     	return retstat;
 }
 
@@ -187,12 +187,12 @@ int p4_chmod(const char *path, mode_t mode)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		retstat = chmod(fpath, mode);
 		if(retstat < 0)
     			return -errno;
-	}
+	//}
     	return retstat;
 }
 
@@ -201,12 +201,12 @@ int p4_chown(const char *path, uid_t uid, gid_t gid)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		retstat = chown(fpath, uid, gid);
 		if(retstat < 0)
     			return -errno;
-	}
+	//}
     	return retstat;
 }
 
@@ -215,12 +215,12 @@ int p4_truncate(const char *path, off_t newsize)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		retstat = truncate(fpath, newsize);
 		if(retstat < 0)
     			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -229,12 +229,12 @@ int p4_utime(const char *path, struct utimbuf *ubuf)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		retstat = utime(fpath, ubuf);
 		if(retstat < 0)
     			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -244,13 +244,13 @@ int p4_open(const char *path, struct fuse_file_info *fi)
 	int fd;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
     		fd = open(fpath, fi->flags);
 		if(fd < 0)
 			return -errno;
 		fi->fh = fd;
-	}
+	//}
     	return retstat;
 }
 
@@ -261,7 +261,7 @@ int p4_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
 	char temp_char;
 	int index;
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		retstat = pread(fi->fh, enc_buf, size, offset);
 		if(retstat < 0)
 			return -errno;
@@ -269,7 +269,7 @@ int p4_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
 			temp_char = enc_buf[index] ^ ENCRYPT_KEY;
 			buf[index] = temp_char;
 		}
-	}
+	//}
 	return retstat;
 }
 
@@ -281,7 +281,7 @@ int p4_write(const char *path, const char *buf, size_t size, off_t offset,
 	char temp_char;
 	int index;
 	
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		for(index = 0; index < size; index++){
 			temp_char = buf[index] ^ ENCRYPT_KEY;
 			dec_buf[index] = temp_char;
@@ -289,7 +289,7 @@ int p4_write(const char *path, const char *buf, size_t size, off_t offset,
 		retstat = pwrite(fi->fh, dec_buf, size, offset);
 		if(retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -298,12 +298,12 @@ int p4_statfs(const char *path, struct statvfs *statv)
 	int retstat = 0;
 	char fpath[PATH_MAX];
 	
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
     		p4_bkend_path(fpath, path);
     		retstat = statvfs(fpath, statv);
 		if(retstat < 0)
 			return -errno;
-    	}
+    	//}
 	return retstat;
 }
 
@@ -316,23 +316,23 @@ int p4_flush(const char *path, struct fuse_file_info *fi)
 int p4_release(const char *path, struct fuse_file_info *fi)
 {
 	int retstat = 0;
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		retstat = close(fi->fh);
-	}
+	//}
 	return retstat;
 }
 
 int p4_fsync(const char *path, int datasync, struct fuse_file_info *fi)
 {
 	int retstat = 0;
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		if(datasync)
 			retstat = fdatasync(fi->fh);
 		else
 			retstat = fsync(fi->fh);
     		if(retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -341,12 +341,12 @@ int p4_setxattr(const char *path, const char *name, const char *value, size_t si
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		retstat = lsetxattr(fpath, name, value, size, flags);
 		if (retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -355,12 +355,12 @@ int p4_getxattr(const char *path, const char *name, char *value, size_t size)
 	int retstat = 0;
 	char fpath[PATH_MAX];
     
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		retstat = lgetxattr(fpath, name, value, size);
 		if (retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -369,12 +369,12 @@ int p4_listxattr(const char *path, char *list, size_t size)
 	int retstat = 0;
 	char fpath[PATH_MAX];
 	
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		retstat = llistxattr(fpath, list, size);
 		if(retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -383,12 +383,12 @@ int p4_removexattr(const char *path, const char *name)
 	int retstat = 0;
 	char fpath[PATH_MAX];
 
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		retstat = lremovexattr(fpath, name);
 		if (retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -398,13 +398,13 @@ int p4_opendir(const char *path, struct fuse_file_info *fi)
 	int retstat = 0;
 	char fpath[PATH_MAX];
 	
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		dp = opendir(fpath);
 		if(dp == NULL)
 			return -errno;
 		fi->fh = (intptr_t) dp;
-	}
+	//}
 	return retstat;
 }
 
@@ -415,7 +415,7 @@ int p4_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
 	DIR *dp;
 	struct dirent *de;
 
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		dp = (DIR *) (uintptr_t) fi->fh;
 		de = readdir(dp);
 		if(de == 0) {
@@ -427,16 +427,16 @@ int p4_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
         			return -ENOMEM;
     			}
 		}while((de = readdir(dp)) != NULL);
-	}
+	//}
 	return retstat;
 }
 
 int p4_releasedir(const char *path, struct fuse_file_info *fi)
 {
 	int retstat = 0;
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		closedir((DIR *) (uintptr_t) fi->fh);
-	}
+	//}
 	return retstat;
 }
 
@@ -461,13 +461,13 @@ int p4_access(const char *path, int mask)
 	int retstat = 0;
 	char fpath[PATH_MAX];
 
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		retstat = access(fpath, mask);
 
 		if(retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
@@ -477,35 +477,35 @@ int p4_create(const char *path, mode_t mode, struct fuse_file_info *fi)
 	char fpath[PATH_MAX];
 	int fd;
 
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		p4_bkend_path(fpath, path);
 		fd = creat(fpath, mode);
 		if(fd < 0)	
 			return -errno;
 		fi->fh = fd;
-	}
+	//}
 	return retstat;
 }
 
 int p4_ftruncate(const char *path, off_t offset, struct fuse_file_info *fi)
 {
 	int retstat = 0;
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		retstat = ftruncate(fi->fh, offset);
 		if(retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
 int p4_fgetattr(const char *path, struct stat *statbuf, struct fuse_file_info *fi)
 {
 	int retstat = 0;
-	if(syscall(290)){   	
+	//if((syscall(290))){   	
 		retstat = fstat(fi->fh, statbuf);
 		if(retstat < 0)
 			return -errno;
-	}
+	//}
 	return retstat;
 }
 
