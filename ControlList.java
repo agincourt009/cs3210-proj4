@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import javax.swing.*;
+
 public class ControlList implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -6,6 +8,7 @@ public class ControlList implements java.io.Serializable
 	private ArrayList<Boolean> friends, family, everyone;
 	private ArrayList<User>users;
 	private RelationshipList relation;
+	private JPanel panel;
 	
 	public ControlList()
 	{
@@ -14,11 +17,19 @@ public class ControlList implements java.io.Serializable
 		family = new ArrayList<Boolean>();
 		users = new ArrayList<User>();
 		everyone = new ArrayList<Boolean>();
+		panel = new JPanel();
 	}//end ControlList constructor
 	
 	public void addFile(String filename, User user, boolean friends, boolean family, boolean everyone)
 	{
 		files.add(filename);
+		String output = new String();
+		for(int i = 0; i<files.size();i++)
+		{
+			output = output + files.get(i);
+		}//end for loop
+		
+		JOptionPane.showMessageDialog(panel,output);
 		if(everyone)
 		{
 			this.users.add(user);
@@ -28,7 +39,6 @@ public class ControlList implements java.io.Serializable
 			this.friends.add(friend);
 			this.family.add(famil);
 			this.everyone.add(everyon);
-			
 		}//end if statement
 		else
 		{

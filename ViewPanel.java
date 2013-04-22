@@ -1,12 +1,9 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import com.sun.jna.*;
@@ -19,17 +16,12 @@ public class ViewPanel extends JPanel
 	private JList photos;
 	private JScrollPane scroll;
 	private String[] data;
-	private BufferedImage preview;
-	private JLabel pictureframe;
 	private MainPanel panel;
-	private boolean prevSelect;
-	private File file;
 	private boolean login;
 	 
 	public ViewPanel(MainPanel panel)
 	{	
 		this.panel = panel;
-		prevSelect=false;
 		instructions = new JLabel("Click on the name of the photo you would like to view\nand it will show up on the right.");
 		
 		if(login)
@@ -44,8 +36,6 @@ public class ViewPanel extends JPanel
 		
 		setPreferredSize(new Dimension(700,400));
 		
-		pictureframe = new JLabel();
-		
 		ArrayList<String> temp = panel.getControl().getFiles(panel.getCurUser());
 		data = new String[temp.size()];
 		
@@ -55,8 +45,7 @@ public class ViewPanel extends JPanel
 		}//end for loop
 		
 		photos = new JList(data);
-		photos.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		photos.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		photos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		photos.setVisibleRowCount(10);
 		
 		ListListener listlisten = new ListListener();
@@ -73,7 +62,6 @@ public class ViewPanel extends JPanel
 		
 		add(instructions);
 		add(scroll);
-		add(pictureframe);
 		add(add);
 		add(logout);
 	}//end ViewPanel constructor
@@ -101,32 +89,19 @@ public class ViewPanel extends JPanel
 			if (e.getValueIsAdjusting() == false) 
 		    {
 				c.syscall(289, 1);
-				if(prevSelect)
+				Runtime run = Runtime.getRuntime();
+				try
 		    	{
-		    		try
-		    		{
-		    			ImageIO.write(preview,"jpg",file);
-		    		}//end try block
-		    		catch(IOException ex)
-		    		{
-		    			ex.printStackTrace();
-		    		}//end catch block
-		    	}
-		    	int sel = photos.getSelectedIndex();
-		    	try 
-				{
-					file = new File(data[sel]);
-		    		preview = ImageIO.read(file);
-				}//end try block
-				catch (IOException ex) 
-				{
-					ex.printStackTrace();
-				}//end catch block
-		    	c.syscall(289,0);
-				pictureframe = new JLabel(new ImageIcon( preview ));
-				prevSelect = true;
-		    }
-		}
+		    		Process proc = run.exec("display " + data[photos.getSelectedIndex()]);
+		    	}//end try block
+		    	catch(IOException i)
+		    	{
+		    		i.printStackTrace();
+		    		return;
+		    	}//end catch block
+				c.syscall(289,0);
+		    }//end if statement
+		}//end valueChanged method
 	}//end ButtonListener class
 	
 	private class LogoutListener implements ActionListener
