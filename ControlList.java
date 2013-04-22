@@ -26,10 +26,10 @@ public class ControlList implements java.io.Serializable
 		String output = new String();
 		for(int i = 0; i<files.size();i++)
 		{
-			output = output + files.get(i);
+			output = output + files.get(i) + "\n";
 		}//end for loop
 		
-		JOptionPane.showMessageDialog(panel,output);
+		JOptionPane.showMessageDialog(panel,"Current files:" + output+ "\nEveryone: " + everyone + "\nFriends: " + friends + "Family: " + family);
 		if(everyone)
 		{
 			this.users.add(user);
