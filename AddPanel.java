@@ -37,6 +37,7 @@ public class AddPanel extends JPanel
 		
 		level1 = new JRadioButton("Level 1: Only Me");
 		level1.setSelected(true);
+		curlevel = 1;
 		
 		level2 = new JRadioButton("Level 2: Friends and I");
 		
