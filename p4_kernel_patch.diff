@@ -1,0 +1,265 @@
+diff --git a/Makefile b/Makefile
+index 3fdb612..3183829 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,7 +1,7 @@
+ VERSION = 2
+ PATCHLEVEL = 6
+ SUBLEVEL = 24
+-EXTRAVERSION = .6
++EXTRAVERSION = .myProj4
+ NAME = Err Metey! A Heury Beelge-a Ret!
+ 
+ # *DOCUMENTATION*
+diff --git a/include/asm-x86/unistd_64.h b/include/asm-x86/unistd_64.h
+index 5ff4d3e..642adb9 100644
+--- a/include/asm-x86/unistd_64.h
++++ b/include/asm-x86/unistd_64.h
+@@ -635,6 +635,18 @@ __SYSCALL(__NR_timerfd, sys_timerfd)
+ __SYSCALL(__NR_eventfd, sys_eventfd)
+ #define __NR_fallocate				285
+ __SYSCALL(__NR_fallocate, sys_fallocate)
++#define __NR_varify_password			286
++__SYSCALL(__NR_varify_password, sys_varify_password)
++#define __NR_check_username			287
++__SYSCALL(__NR_check_username, sys_check_username)
++#define __NR_add_user				288
++__SYSCALL(__NR_add_user, sys_add_user)
++#define __NR_set_user				289
++__SYSCALL(__NR_set_user, sys_set_user)
++#define __NR_get_user				290
++__SYSCALL(__NR_get_user, sys_get_user)
++#define __NR_clean_user				291
++__SYSCALL(__NR_clean_user, sys_clean_user)
+ 
+ #ifndef __NO_STUBS
+ #define __ARCH_WANT_OLD_READDIR
+diff --git a/include/linux/sched.h b/include/linux/sched.h
+index 0fd71ad..0274394 100644
+--- a/include/linux/sched.h
++++ b/include/linux/sched.h
+@@ -919,6 +919,12 @@ struct sched_entity {
+ #endif
+ };
+ 
++struct user_p4{
++	struct list_head userlist;
++	char* username;
++	char* password;
++};
++
+ struct task_struct {
+ 	volatile long state;	/* -1 unrunnable, 0 runnable, >0 stopped */
+ 	void *stack;
+@@ -1188,6 +1194,8 @@ struct task_struct {
+ 	struct latency_record latency_record[LT_SAVECOUNT];
+ #endif
+ 	struct list_head	*scm_work_list;
++	struct list_head	*user_password;
++	int user_value;
+ };
+ 
+ /*
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+index 61def7c..c13fff5 100644
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -611,6 +611,12 @@ asmlinkage long sys_timerfd(int ufd, int clockid, int flags,
+ 			    const struct itimerspec __user *utmr);
+ asmlinkage long sys_eventfd(unsigned int count);
+ asmlinkage long sys_fallocate(int fd, int mode, loff_t offset, loff_t len);
++asmlinkage long sys_varify_password(char* username, char* password, int user_len, int password_len);
++asmlinkage long sys_check_username(char* username, int user_len);
++asmlinkage long sys_add_user(char* username, char* password, int user_len, int password_len);
++asmlinkage long sys_clean_user(void);
++asmlinkage long sys_set_user(int set_value);
++asmlinkage long sys_get_user(void);
+ 
+ int kernel_execve(const char *filename, char *const argv[], char *const envp[]);
+ 
+diff --git a/kernel/sys.c b/kernel/sys.c
+index d1fe71e..cba2b9c 100644
+--- a/kernel/sys.c
++++ b/kernel/sys.c
+@@ -43,6 +43,9 @@
+ #include <asm/io.h>
+ #include <asm/unistd.h>
+ 
++#include <linux/sched.h>
++#include <linux/list.h>
++
+ #ifndef SET_UNALIGN_CTL
+ # define SET_UNALIGN_CTL(a,b)	(-EINVAL)
+ #endif
+@@ -1761,6 +1764,171 @@ asmlinkage long sys_getcpu(unsigned __user *cpup, unsigned __user *nodep,
+ 	return err ? -EFAULT : 0;
+ }
+ 
++
++/********************* NEW SYSCALL *****************************/
++asmlinkage long sys_varify_password(char* username, char* password, int user_len, int password_len){
++	struct list_head *temp_user_info;
++	struct user_p4 *traverse_user_info;
++	char* temp_user = vmalloc(user_len);
++	char* temp_password = vmalloc(password_len);
++	int index;
++	printk(KERN_INFO "===== sys_varify_password: username: %s, len: %d, password: %s, len: %d\n", 
++						username, user_len, password, password_len);
++	
++	for(index = 0; index < user_len-1; index++){
++		temp_user[index] = username[index];
++	}
++	temp_user[user_len-1] = '\0';
++	
++	for(index = 0; index < password_len-1; index++){
++		temp_password[index] = password[index];
++	}
++	temp_password[password_len-1] = '\0';
++	
++	if(current->user_password == NULL){
++		printk(KERN_INFO "========== no user info\n");
++		return 0;
++	}else{
++		list_for_each(temp_user_info, current->user_password){
++			traverse_user_info = list_entry(temp_user_info, struct user_p4, userlist);
++			printk(KERN_INFO "========== list_info: username: %s, password: %s\n", 
++					traverse_user_info->username, traverse_user_info->password);
++			if(!strcmp(traverse_user_info->username, temp_user)){
++				printk(KERN_INFO "=============== usernames are the same\n"); 	
++				if(!strcmp(traverse_user_info->password, temp_password)){
++					printk(KERN_INFO "=============== passwords are the same\n"); 	
++					return 1;
++				}
++				return 0;
++			}
++		}
++		return 0;
++	}
++}
++
++asmlinkage long sys_check_username(char* username, int user_len){
++	struct list_head *temp_user_info;
++	struct user_p4 *traverse_user_info;
++	char* temp_user = vmalloc(user_len);
++	int index;
++	printk(KERN_INFO "===== sys_check_username: username: %s, len: %d\n", 
++						username, user_len);
++	for(index = 0; index < user_len-1; index++){
++		temp_user[index] = username[index];
++	}
++	temp_user[user_len-1] = '\0';
++
++	if(current->user_password == NULL){
++		printk(KERN_INFO "========== no user info\n");
++		return 0;
++	}else{
++		list_for_each(temp_user_info, current->user_password){
++			traverse_user_info = list_entry(temp_user_info, struct user_p4, userlist);
++			printk(KERN_INFO "========== list_info: username: %s, password: %s\n", 
++					traverse_user_info->username, traverse_user_info->password);
++			if(!strcmp(traverse_user_info->username, temp_user)){
++				printk(KERN_INFO "=============== usernames are the same\n"); 	
++				return 1;
++			}
++		}
++		return 0;
++	}
++}
++
++asmlinkage long sys_add_user(char* username, char* password, 
++				int user_len, int password_len){
++	struct user_p4 *add_user_info;
++	struct task_struct *temp_task;
++	struct task_struct *n_thread;
++	//char* memtemp;
++	int index;
++	printk(KERN_INFO "===== sys_add_user: username: %s, len: %d, password: %s, len: %d\n", 
++						username, user_len, password, password_len);
++	add_user_info = vmalloc(sizeof(add_user_info));
++	add_user_info->username = vmalloc(user_len);
++	add_user_info->password = vmalloc(password_len);
++	/*memtemp = strncpy(add_user_info->username, username, user_len);
++	if(memtemp == NULL){
++		return 0;
++	}
++	if(add_user_info->username[user_len - 1] != '\0'){
++		add_user_info->username[user_len - 1] = '\0';
++	}
++	memtemp = strncpy(add_user_info->password, password, password_len);
++	if(memtemp == NULL){
++		return 0;
++	}
++	if(add_user_info->password[user_len - 1] != '\0'){
++		add_user_info->password[user_len - 1] = '\0';
++	}*/
++
++	for(index = 0; index < user_len-1; index++){
++		add_user_info->username[index] = username[index];
++	}
++	add_user_info->username[user_len-1] = '\0';
++	
++	for(index = 0; index < password_len-1; index++){
++		add_user_info->password[index] = password[index];
++	}
++	add_user_info->password[password_len-1] = '\0';
++	
++	if(current->user_password == NULL){
++		current->user_password = vmalloc(sizeof(struct list_head));
++		INIT_LIST_HEAD(current->user_password);
++		list_add_tail(&(add_user_info->userlist), current->user_password);
++		do_each_thread(temp_task, n_thread){
++			temp_task->user_password = current->user_password;
++		}while_each_thread(temp_task, n_thread);
++	}else{
++		list_add_tail(&(add_user_info->userlist), current->user_password);
++	}
++	return 1;
++}
++
++asmlinkage long sys_clean_user(void){
++	struct list_head *temp_user_info;
++	struct list_head *next_user_info;
++	struct user_p4 *traverse_user_info;
++	struct task_struct *temp_task;
++	struct task_struct *n_thread;
++	
++	printk(KERN_INFO "===== sys_clean_user\n");
++	if(current->user_password == NULL){
++		return 1;
++	}else{
++		list_for_each_safe(temp_user_info, next_user_info, current->user_password){
++			traverse_user_info = list_entry(temp_user_info, struct user_p4, userlist);
++			printk(KERN_INFO "========== list_info: username: %s, password: %s\n", 
++					traverse_user_info->username, traverse_user_info->password);
++			list_del(temp_user_info);
++			vfree(traverse_user_info->username);
++			vfree(traverse_user_info->password);
++			vfree(traverse_user_info);
++		}
++		current->user_password = NULL;
++		do_each_thread(temp_task, n_thread){
++			temp_task->user_password = NULL;
++		}while_each_thread(temp_task, n_thread);
++	}
++	return 1;
++}
++
++asmlinkage long sys_set_user(int set_value){
++	struct task_struct *temp_task;
++	struct task_struct *n_thread;
++	current->user_value = set_value;
++	do_each_thread(temp_task, n_thread){
++		temp_task->user_value = set_value;
++	}while_each_thread(temp_task, n_thread);
++	return set_value;
++}
++
++asmlinkage long sys_get_user(void){
++	return current->user_value;
++}
++
++/********************* NEW SYSCALL *****************************/
++
+ char poweroff_cmd[POWEROFF_CMD_PATH_LEN] = "/sbin/poweroff";
+ 
+ static void argv_cleanup(char **argv, char **envp)
