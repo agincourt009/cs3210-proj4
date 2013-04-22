@@ -27,7 +27,8 @@ public class MainPanel extends JFrame
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		if(args[0].equals("yes"));
+		String arg = new String("yes");
+		if(args[0].equals(arg));
 		{
 			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 			c.syscall(291);

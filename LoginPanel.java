@@ -83,7 +83,7 @@ public class LoginPanel extends JPanel
 				int userlength = Native.toCharArray(usern).length;
 				*/
 				
-				int passlength = temp.length;
+				int passlength = pass.length();
 				int userlength = usern.length();
 				
 				int correct = c.syscall(286, usermem, passmem,userlength, passlength);
