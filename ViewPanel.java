@@ -42,6 +42,7 @@ public class ViewPanel extends JPanel
 		for(int i = 0; i<temp.size();i++)
 		{
 			data[i]=temp.get(i);
+			JOptionPane.showMessageDialog(panel,temp.get(i) + " was added.");
 		}//end for loop
 		
 		photos = new JList(data);
