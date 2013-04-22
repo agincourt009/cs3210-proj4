@@ -82,6 +82,7 @@ public class AddPanel extends JPanel
 		add(level3);
 		add(level4);
 		add(choose);
+		add(view);
 		add(logout);
 	}//end AddPanel constructor
 	

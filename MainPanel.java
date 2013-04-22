@@ -112,7 +112,6 @@ public class MainPanel extends JFrame
 		CloseHandler close = new CloseHandler();
 		addWindowListener(close);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
 	}//end MainPanel constructor
 	public void logout()
 	{
