@@ -115,7 +115,8 @@ public class MainPanel extends JFrame
 	public void logout()
 	{
 		curlevel = 0;
-		curUser = null;
+		User usere = new User("Everyone");
+		curUser = usere;
 		this.setContentPane(login);
 		this.validate();
 	}//end logout method
