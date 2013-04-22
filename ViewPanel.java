@@ -45,6 +45,8 @@ public class ViewPanel extends JPanel
 			JOptionPane.showMessageDialog(panel,temp.get(i) + " was added.");
 		}//end for loop
 		
+		JOptionPane.showMessageDialog(panel,"Current user is: " + panel.getCurUser().getUser());
+		
 		photos = new JList(data);
 		photos.setVisible(true);
 		photos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

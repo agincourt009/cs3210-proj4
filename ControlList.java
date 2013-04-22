@@ -28,34 +28,16 @@ public class ControlList implements java.io.Serializable
 		{
 			output = output + files.get(i) + "\n";
 		}//end for loop
+		Boolean every = new Boolean(everyone);
+		Boolean friend = new Boolean(friends);
+		Boolean fam = new Boolean(family);
+		this.users.add(user);
+		this.everyone.add(every);
+		this.friends.add(friend);
+		this.family.add(fam);
 		
-		JOptionPane.showMessageDialog(panel,"Current files:" + output+ "\nEveryone: " + everyone + "\nFriends: " + friends + "Family: " + family);
-		if(everyone)
-		{
-			this.users.add(user);
-			Boolean friend = new Boolean(false);
-			Boolean famil = new Boolean(false);
-			Boolean everyon = new Boolean(true);
-			this.friends.add(friend);
-			this.family.add(famil);
-			this.everyone.add(everyon);
-		}//end if statement
-		else
-		{
-			this.users.add(user);
-			Boolean every = new Boolean(false);
-			this.everyone.add(every);
-			if(friends)
-			{
-				Boolean frien = new Boolean(true);
-				this.friends.add(frien);
-			}//end if statement
-			if(family)
-			{
-				Boolean fam = new Boolean(true);
-				this.family.add(fam);
-			}//end if statement
-		}//end else
+		JOptionPane.showMessageDialog(panel,"Current files:" + output+ "\nEveryone: " + every.booleanValue() + "\nFriends: " + friend.booleanValue() + "\nFamily: " + fam.booleanValue());
+		
 	}//end file adder
 	
 	public boolean hasAccess(String filePath, User user)
@@ -106,7 +88,7 @@ public class ControlList implements java.io.Serializable
 			{
 				data.add(files.get(i));
 			}//end else if
-			else if(user.equals(users.get(i)))
+			else if(user.getUser().equals(users.get(i).getUser()))
 			{
 				data.add(files.get(i));
 			}//end else if
