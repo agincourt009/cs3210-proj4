@@ -105,7 +105,8 @@ public class MainPanel extends JFrame
 		this.relations = relations;
 		this.control = control;
 		curlevel = 0;
-		curUser = null;
+		User usere = new User("Everyone");
+		curUser = usere;
 
 		CloseHandler close = new CloseHandler();
 		addWindowListener(close);
