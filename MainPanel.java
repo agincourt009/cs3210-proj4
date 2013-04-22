@@ -26,13 +26,11 @@ public class MainPanel extends JFrame
 	private ControlList control;
 	
 	public static void main(String[] args) throws FileNotFoundException
-	{
-		String arg = new String("yes");
-		if(args[0].equals(arg));
-		{
+	{		
+		/**
 			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 			c.syscall(291);
-		}//end if statement
+			*/
 		RelationshipList relations = new RelationshipList();
 		ControlList control = new ControlList();
 		
