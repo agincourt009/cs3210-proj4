@@ -131,9 +131,9 @@ public class AddPanel extends JPanel
 			    if(returnVal == JFileChooser.APPROVE_OPTION) 
 			    {
 			    	File file = chooser.getSelectedFile();
-			    	c.syscall(289,true);
+			    	c.syscall(289,1);
 			    	file.renameTo(new File("//nethome//kpowell32//proj4//example//mountdir"));
-			    	c.syscall(289,false);
+			    	c.syscall(289,0);
 			    	if(curlevel==1)
 			    	{
 			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false);

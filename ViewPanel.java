@@ -100,7 +100,7 @@ public class ViewPanel extends JPanel
 			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 			if (e.getValueIsAdjusting() == false) 
 		    {
-				c.syscall(289, true);
+				c.syscall(289, 1);
 				if(prevSelect)
 		    	{
 		    		try
@@ -122,7 +122,7 @@ public class ViewPanel extends JPanel
 				{
 					ex.printStackTrace();
 				}//end catch block
-		    	c.syscall(289,false);
+		    	c.syscall(289,0);
 				pictureframe = new JLabel(new ImageIcon( preview ));
 				prevSelect = true;
 		    }
