@@ -64,25 +64,26 @@ public class LoginPanel extends JPanel
 				char[] temp= text.getPassword();
 				String pass = new String(temp);
 				String usern = user.getText();
-				/**
-				Memory passmem = new Memory(pass.length());
-				passmem.write(0, pass.getBytes(), 0, pass.length());
+				
+				Memory passmem = new Memory(temp.length);
+				passmem.write(0, pass.getBytes(), 0, temp.length);
 				
 				Memory usermem = new Memory(usern.length());
 				usermem.write(0, usern.getBytes(), 0, usern.length());
-				*/
 				
+				/**
 				Pointer usermem = new Memory(usern.length() + 1);
 				usermem.setString(0, usern);
 				
 				Pointer passmem = new Memory(pass.length() + 1);
 				passmem.setString(0, pass);
+				*/
 				/**
 				int passlength = Native.toCharArray(pass).length;
 				int userlength = Native.toCharArray(usern).length;
 				*/
 				
-				int passlength = pass.length();
+				int passlength = temp.length;
 				int userlength = usern.length();
 				
 				int correct = c.syscall(286, usermem, passmem,userlength, passlength);
