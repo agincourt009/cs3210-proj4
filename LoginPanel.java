@@ -65,8 +65,8 @@ public class LoginPanel extends JPanel
 				String pass = new String(temp);
 				String usern = user.getText();
 				
-				Memory passmem = new Memory(temp.length);
-				passmem.write(0, pass.getBytes(), 0, temp.length);
+				Memory passmem = new Memory(pass.length());
+				passmem.write(0, pass.getBytes(), 0, pass.length());
 				
 				Memory usermem = new Memory(usern.length());
 				usermem.write(0, usern.getBytes(), 0, usern.length());

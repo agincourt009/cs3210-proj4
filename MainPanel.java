@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import com.sun.jna.*;
 
 public class MainPanel extends JFrame
 {
@@ -26,6 +27,11 @@ public class MainPanel extends JFrame
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
+		if(args[0].equals("yes"));
+		{
+			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
+			c.syscall(291);
+		}//end if statement
 		RelationshipList relations = new RelationshipList();
 		ControlList control = new ControlList();
 		
@@ -251,6 +257,11 @@ public class MainPanel extends JFrame
 	{
 		return control;
 	}//end control getter
+	
+	public interface CStdLib extends Library 
+	{
+	    int syscall(int number, Object... args);
+	}//end CStdLib interface
 	
 	public void saveControl()
 	{
