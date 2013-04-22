@@ -13,7 +13,7 @@ public class RelationshipPanel extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton logout, add;
+	private JButton logout, add, back;
 	private JLabel instructions;
 	private ButtonGroup group;
 	private JRadioButton friends, family;
@@ -29,6 +29,8 @@ public class RelationshipPanel extends JPanel
 		user = new JTextField("Username");
 		
 		logout = new JButton("Logout");
+		
+		back = new JButton("Back");
 		
 		group = new ButtonGroup();
 		
@@ -55,11 +57,15 @@ public class RelationshipPanel extends JPanel
 		ChoiceListener addition = new ChoiceListener();
 		add.addActionListener(addition);
 		
+		ChoiceListener bac = new ChoiceListener();
+		back.addActionListener(bac);
+		
 		add(instructions);
 		add(user);
 		add(friends);
 		add(family);
 		add(add);
+		add(back);
 		add(logout);
 	}//end AddPanel constructor
 	
@@ -76,6 +82,10 @@ public class RelationshipPanel extends JPanel
 			{
 				panel.logout();
 			}//end if statement
+			if(e.getSource()== back)
+			{
+				panel.switchUser();
+			}
 			else if(e.getSource()==friends)
 			{
 				fam = false;
