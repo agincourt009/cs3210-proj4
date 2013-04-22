@@ -109,18 +109,22 @@ public class AddPanel extends JPanel
 			else if(e.getSource()==level1)
 			{
 				curlevel = 1;
+				JOptionPane.showMessageDialog(panel, "curlevel is 1.");
 			}//end else statement
 			else if(e.getSource()==level2)
 			{
 				curlevel = 2;
+				JOptionPane.showMessageDialog(panel, "curlevel is 2.");
 			}//end else if statement
 			else if(e.getSource()==level3)
 			{
 				curlevel = 3;
+				JOptionPane.showMessageDialog(panel, "curlevel is 3.");
 			}//end else if statement
 			else if(e.getSource()==level4)
 			{
 				curlevel = 4;	
+				JOptionPane.showMessageDialog(panel, "curlevel is 4.");
 			}//end else if statement
 			else if(e.getSource()==view)
 			{
