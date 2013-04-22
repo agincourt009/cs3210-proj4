@@ -82,7 +82,7 @@ public class RelationshipPanel extends JPanel
 			{
 				panel.logout();
 			}//end if statement
-			if(e.getSource()== back)
+			else if(e.getSource()== back)
 			{
 				panel.switchUser();
 			}
