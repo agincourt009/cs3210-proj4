@@ -58,17 +58,14 @@ public class AddPanel extends JPanel
 		RadioListener log = new RadioListener();
 		logout.addActionListener(log);
 		
-		RadioListener lev1 = new RadioListener();
-		level1.addActionListener(lev1);
+		RadioListener button = new RadioListener();
+		level1.addActionListener(button);
 		
-		RadioListener lev2 = new RadioListener();
-		level2.addActionListener(lev2);
+		level2.addActionListener(button);
 		
-		RadioListener lev3 = new RadioListener();
-		level3.addActionListener(lev3);
+		level3.addActionListener(button);
 		
-		RadioListener lev4 = new RadioListener();
-		level4.addActionListener(lev4);
+		level4.addActionListener(button);
 		
 		RadioListener choice = new RadioListener();
 		choose.addActionListener(choice);
