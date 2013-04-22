@@ -96,6 +96,8 @@ public class LoginPanel extends JPanel
 			{
 				panel.setCurlevel(4);
 				panel.switchView(true);
+				User usere = new User("Everyone");
+				panel.setCurUser(usere);
 			}//end else statement
 		}//end ActionPerformed method
 	}//end ButtonsListener class
