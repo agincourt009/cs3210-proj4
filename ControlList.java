@@ -36,7 +36,7 @@ public class ControlList implements java.io.Serializable
 		this.friends.add(friend);
 		this.family.add(fam);
 		
-		JOptionPane.showMessageDialog(panel,"Current files:" + output+ "\nEveryone: " + every.booleanValue() + "\nFriends: " + friend.booleanValue() + "\nFamily: " + fam.booleanValue());
+		JOptionPane.showMessageDialog(panel,"Current files:" + output);
 		
 	}//end file adder
 	

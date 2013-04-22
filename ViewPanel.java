@@ -103,7 +103,7 @@ public class ViewPanel extends JPanel
 			{
 				panel.logout();
 			}//end if statement
-			else
+			else if (e.getSource()==add)
 			{
 				panel.switchAdd();
 			}//end else statement
