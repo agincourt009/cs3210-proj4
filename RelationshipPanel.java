@@ -107,10 +107,6 @@ public class RelationshipPanel extends JPanel
 				if(exists==1)
 				{
 					User newu = new User(usern);
-					/**
-					 * Take this out when serialization is fixed!
-					 */
-					panel.getRelations().addUser(newu);
 					if(panel.getRelations().isFamily(panel.getCurUser(), newu)||panel.getRelations().isFriend(panel.getCurUser(), newu))
 					{
 						if(fam)

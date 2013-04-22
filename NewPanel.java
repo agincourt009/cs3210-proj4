@@ -64,11 +64,6 @@ public class NewPanel extends JPanel
 			int userlength = Native.toCharArray(usern).length;
 				
 			int exists = c.syscall(287, usermem,userlength);
-			/**
-			 * Take this out when serialization is fixed!
-			 */
-			User newus = new User(usern);
-			panel.getRelations().addUser(newus);
 			if(exists!=1)
 			{
 				int success = c.syscall(288, usermem, passmem, userlength, passlength);
