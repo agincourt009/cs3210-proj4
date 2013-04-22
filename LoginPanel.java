@@ -71,20 +71,8 @@ public class LoginPanel extends JPanel
 				Memory usermem = new Memory(usern.length());
 				usermem.write(0, usern.getBytes(), 0, usern.length());
 				
-				/**
-				Pointer usermem = new Memory(usern.length() + 1);
-				usermem.setString(0, usern);
-				
-				Pointer passmem = new Memory(pass.length() + 1);
-				passmem.setString(0, pass);
-				*/
-				/**
 				int passlength = Native.toCharArray(pass).length;
 				int userlength = Native.toCharArray(usern).length;
-				*/
-				
-				int passlength = pass.length();
-				int userlength = usern.length();
 				
 				int correct = c.syscall(286, usermem, passmem,userlength, passlength);
 				if(correct == 1)
