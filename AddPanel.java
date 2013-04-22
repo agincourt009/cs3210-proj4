@@ -132,7 +132,7 @@ public class AddPanel extends JPanel
 			    {
 			    	File file = chooser.getSelectedFile();
 			    	c.syscall(289,true);
-			    	file.renameTo(new File("//home//agincourt//workspace//Filesystem//src//storage"));
+			    	file.renameTo(new File("//nethome//kpowell32//proj4//example//mountdir"));
 			    	c.syscall(289,false);
 			    	if(curlevel==1)
 			    	{
