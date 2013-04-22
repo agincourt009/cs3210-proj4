@@ -45,6 +45,7 @@ public class ViewPanel extends JPanel
 		}//end for loop
 		
 		photos = new JList(data);
+		photos.setVisible(true);
 		photos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		photos.setVisibleRowCount(10);
 		
