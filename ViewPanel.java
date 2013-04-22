@@ -17,21 +17,13 @@ public class ViewPanel extends JPanel
 	private JScrollPane scroll;
 	private String[] data;
 	private MainPanel panel;
-	private boolean login;
 	 
-	public ViewPanel(MainPanel panel)
+	public ViewPanel(MainPanel panel, String logString)
 	{	
 		this.panel = panel;
 		instructions = new JLabel("Click on the name of the photo you would like to view\nand it will show up on the right.");
 		
-		if(login)
-		{
-			logout = new JButton("Login");
-		}//end if statement
-		else
-		{
-			logout = new JButton("Logout");
-		}//end else statement
+		logout = new JButton(logString);
 		add = new JButton("Add Photos");
 		
 		setPreferredSize(new Dimension(700,400));
@@ -74,11 +66,6 @@ public class ViewPanel extends JPanel
 	{
 		this.panel = panel;
 	}//end setPanel method
-	
-	public void setLogin(boolean state)
-	{
-		login = state;
-	}//end login setter
 	
 	public interface CStdLib extends Library 
 	{

@@ -36,7 +36,7 @@ public class MainPanel extends JFrame
 		
 		MainPanel panel = new MainPanel(relations, control);
 		
-		ViewPanel view = new ViewPanel(panel);
+		ViewPanel view = new ViewPanel(panel, "Logout");
 		panel.setView(view);
 		LoginPanel login = new LoginPanel(panel);
 		panel.setLogin(login);
@@ -134,9 +134,18 @@ public class MainPanel extends JFrame
 	
 	public void switchView(boolean login)
 	{
-		view.setLogin(login);
-		this.setContentPane(view);
-		this.validate();
+		if(login)
+		{
+			ViewPanel viewIn = new ViewPanel(this, "Login");
+			this.setContentPane(viewIn);
+			this.validate();
+		}//end if statement
+		else
+		{
+			ViewPanel viewOut = new ViewPanel(this, "Login");
+			this.setContentPane(viewOut);
+			this.validate();
+		}//end else statement
 	}//end switchView method
 	
 	public void switchNew()
