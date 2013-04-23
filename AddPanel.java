@@ -137,13 +137,13 @@ public class AddPanel extends JPanel
 			    	try
 			    	{
 			    		Process proc = run.exec("cp " + chooser.getSelectedFile().getPath() + " //nethome//kpowell32//proj4//example//mountdir");
+			    		proc.exitValue();
 			    	}//end try block
 			    	catch(IOException i)
 			    	{
 			    		i.printStackTrace();
 			    		return;
 			    	}//end catch block
-			    	//file.renameTo(new File("//nethome//kpowell32//proj4//example//mountdir"));
 			    	c.syscall(289,0);
 			    	if(curlevel==1)
 			    	{

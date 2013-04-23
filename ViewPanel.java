@@ -81,6 +81,7 @@ public class ViewPanel extends JPanel
 				try
 		    	{
 		    		Process proc = run.exec("display " + data[photos.getSelectedIndex()]);
+		    		proc.exitValue();
 		    	}//end try block
 		    	catch(IOException i)
 		    	{

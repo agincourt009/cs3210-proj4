@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import javax.swing.*;
 
 public class ControlList implements java.io.Serializable
 {
