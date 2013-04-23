@@ -132,11 +132,12 @@ public class AddPanel extends JPanel
 			    if(returnVal == JFileChooser.APPROVE_OPTION) 
 			    {
 			    	File file = chooser.getSelectedFile();
+			    	String newPath = new String(" //nethome//kpowell32//proj4//example//mountdir//" + chooser.getSelectedFile().getName());
 			    	c.syscall(289,1);
 			    	Runtime run = Runtime.getRuntime();
 			    	try
 			    	{
-			    		Process proc = run.exec("cp " + chooser.getSelectedFile().getPath() + " //nethome//kpowell32//proj4//example//mountdir");
+			    		Process proc = run.exec("cp " + file.getPath() + " //nethome//kpowell32//proj4//example//mountdir");
 			    	
 			    	}//end try block
 			    	catch(IOException i)
@@ -147,19 +148,19 @@ public class AddPanel extends JPanel
 			    	c.syscall(289,0);
 			    	if(curlevel==1)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false, panel, file.getName());
+			    		panel.getControl().addFile(newPath, panel.getCurUser(), false, false, false, panel, file.getName());
 			    	}//end if statement
 			    	else if(curlevel==2)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, false, false, panel, file.getName());
+			    		panel.getControl().addFile(newPath, panel.getCurUser(), true, false, false, panel, file.getName());
 			    	}//end else if statement
 			    	else if(curlevel==3)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, false, panel, file.getName());
+			    		panel.getControl().addFile(newPath, panel.getCurUser(), true, true, false, panel, file.getName());
 			    	}//end else if statement
 			    	else if(curlevel==4)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true, panel, file.getName());
+			    		panel.getControl().addFile(newPath, panel.getCurUser(), true, true, true, panel, file.getName());
 			    	}//end else if statement
 			    	JOptionPane.showMessageDialog(panel, "The photo was added. Please choose another, view photos, or log out.");
 			    }//end if statement
