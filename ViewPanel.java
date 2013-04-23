@@ -37,7 +37,7 @@ public class ViewPanel extends JPanel
 			JOptionPane.showMessageDialog(panel,temp.get(i) + " was added.");
 		}//end for loop
 		
-		JOptionPane.showMessageDialog(panel,"Current user is: " + panel.getCurUser().getUser());
+		JOptionPane.showMessageDialog(panel,"Current user is: " + panel.getCurUser());
 		
 		photos = new JList(data);
 		photos.setVisible(true);
@@ -105,7 +105,7 @@ public class ViewPanel extends JPanel
 			}//end if statement
 			else if (e.getSource()==add)
 			{
-				if(panel.getCurUser().getUser().equals("Everyone"))
+				if(panel.getCurUser().equals("Everyone"))
 				{
 					JOptionPane.showMessageDialog(panel,"Please login before adding photos.");
 					panel.switchView(true);

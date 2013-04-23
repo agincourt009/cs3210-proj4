@@ -73,8 +73,7 @@ public class NewPanel extends JPanel
 					panel.saveRelations();
 					System.exit(0);
 				}//end if statement
-				User newu = new User(usern);
-				panel.setCurUser(newu);
+				panel.setCurUser(usern);
 				panel.switchUser();
 			}//end if statement
 			else

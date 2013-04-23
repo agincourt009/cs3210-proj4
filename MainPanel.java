@@ -21,7 +21,7 @@ public class MainPanel extends JFrame
 	private NewPanel newp;
 	private RelationshipPanel relation;
 	private int curlevel;
-	private User curUser;
+	private String curUser;
 	private RelationshipList relations;
 	private ControlList control;
 	
@@ -105,7 +105,7 @@ public class MainPanel extends JFrame
 		this.relations = relations;
 		this.control = control;
 		curlevel = 0;
-		User usere = new User("Everyone");
+		String usere = new String("Everyone");
 		curUser = usere;
 
 		CloseHandler close = new CloseHandler();
@@ -115,7 +115,7 @@ public class MainPanel extends JFrame
 	public void logout()
 	{
 		curlevel = 0;
-		User usere = new User("Everyone");
+		String usere = new String("Everyone");
 		curUser = usere;
 		this.setContentPane(login);
 		this.validate();
@@ -237,12 +237,12 @@ public class MainPanel extends JFrame
 		return curlevel;
 	}//end curlevel getter
 	
-	public void setCurUser(User user)
+	public void setCurUser(String user)
 	{
 		this.curUser = user;
 	}//end curUser setter
 	
-	public User getCurUser()
+	public String getCurUser()
 	{
 		return curUser;
 	}//end curUser getter

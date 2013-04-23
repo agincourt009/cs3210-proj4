@@ -1,4 +1,4 @@
-
+/**
 public class User implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -18,3 +18,4 @@ public class User implements java.io.Serializable
 		return user;
 	}//end user getter
 }//end user class
+*/

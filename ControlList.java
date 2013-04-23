@@ -6,7 +6,7 @@ public class ControlList implements java.io.Serializable
 	private static final long serialVersionUID = 1L;
 	private ArrayList<String> files;
 	private ArrayList<Boolean> friends, family, everyone;
-	private ArrayList<User>users;
+	private ArrayList<String>users;
 	private RelationshipList relation;
 	private JPanel panel;
 	
@@ -15,12 +15,12 @@ public class ControlList implements java.io.Serializable
 		files = new ArrayList<String>();
 		friends = new ArrayList<Boolean>();
 		family = new ArrayList<Boolean>();
-		users = new ArrayList<User>();
+		users = new ArrayList<String>();
 		everyone = new ArrayList<Boolean>();
 		panel = new JPanel();
 	}//end ControlList constructor
 	
-	public void addFile(String filename, User user, boolean friends, boolean family, boolean everyone)
+	public void addFile(String filename, String user, boolean friends, boolean family, boolean everyone)
 	{
 		files.add(filename);
 		String output = new String();
@@ -40,7 +40,7 @@ public class ControlList implements java.io.Serializable
 		
 	}//end file adder
 	
-	public boolean hasAccess(String filePath, User user)
+	public boolean hasAccess(String filePath, String user)
 	{
 		int index = files.indexOf(filePath);
 		if(user==users.get(index))
@@ -70,7 +70,7 @@ public class ControlList implements java.io.Serializable
 		return everyone.get(index).booleanValue();
 	}//end isEveryone method
 	
-	public ArrayList<String> getFiles(User user)
+	public ArrayList<String> getFiles(String user)
 	{
 		ArrayList<String> data = new ArrayList<String>();
 		
@@ -88,7 +88,7 @@ public class ControlList implements java.io.Serializable
 			{
 				data.add(files.get(i));
 			}//end else if
-			else if(user.getUser().equals(users.get(i).getUser()))
+			else if(user.equals(users.get(i)))
 			{
 				data.add(files.get(i));
 			}//end else if

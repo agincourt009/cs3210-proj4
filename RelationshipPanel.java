@@ -106,17 +106,16 @@ public class RelationshipPanel extends JPanel
 				int exists = c.syscall(287, usermem,userlength);
 				if(exists==1)
 				{
-					User newu = new User(usern);
-					if(panel.getRelations().isFamily(panel.getCurUser(), newu)||panel.getRelations().isFriend(panel.getCurUser(), newu))
+					if(panel.getRelations().isFamily(panel.getCurUser(), usern)||panel.getRelations().isFriend(panel.getCurUser(), usern))
 					{
 						if(fam)
 						{
-							panel.getRelations().addFamily(panel.getCurUser(), newu);
+							panel.getRelations().addFamily(panel.getCurUser(), usern);
 							panel.switchUser();
 						}
 						else
 						{
-							panel.getRelations().addFriend(panel.getCurUser(), newu);
+							panel.getRelations().addFriend(panel.getCurUser(), usern);
 							panel.switchUser();
 						}
 					}//end if statement
