@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -27,8 +28,8 @@ public class MainPanel extends JFrame
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{		
-			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
-			c.syscall(291);
+		CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
+		c.syscall(291);
 		
 		RelationshipList relations = new RelationshipList();
 		ControlList control = new ControlList();
@@ -275,11 +276,12 @@ public class MainPanel extends JFrame
 	{
 		try
 	    {
-	         FileOutputStream fileOut = new FileOutputStream("control.ser");
-	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(control);
-	         out.close();
-	         fileOut.close();
+	        File file = new File("control.ser"); 
+			FileOutputStream fileOut = new FileOutputStream(file);
+	        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	        out.writeObject(control);
+	        out.close();
+	        fileOut.close();
 	    }//end try block
 		catch(IOException i)
 	    {
@@ -291,11 +293,12 @@ public class MainPanel extends JFrame
 	{
 		try
 		{
-		     FileOutputStream fileOut = new FileOutputStream("relations.ser");
-		     ObjectOutputStream out = new ObjectOutputStream(fileOut);
-		     out.writeObject(relations);
-		     out.close();
-		     fileOut.close();
+		    File file = new File("relations.ser"); 
+			FileOutputStream fileOut = new FileOutputStream(file);
+		    ObjectOutputStream out = new ObjectOutputStream(fileOut);
+		    out.writeObject(relations);
+		    out.close();
+		    fileOut.close();
 		}//end try block
 		catch(IOException i)
 		{
