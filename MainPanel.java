@@ -56,12 +56,14 @@ public class MainPanel extends JFrame
 	         relations = (RelationshipList) in.readObject();
 	         in.close();
 	         fileIn.close();
+	         panel.setRelations(relations);
 	         
 	         fileIn = new FileInputStream("control.ser");
 	         in = new ObjectInputStream(fileIn);
 	         control = (ControlList) in.readObject();
 	         in.close();
 	         fileIn.close();
+	         panel.setControl(control);
 	    }//end try block
 		catch(FileNotFoundException e)
 		{
@@ -280,6 +282,7 @@ public class MainPanel extends JFrame
 			FileOutputStream fileOut = new FileOutputStream(file);
 	        ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	        out.writeObject(control);
+	        out.flush();
 	        out.close();
 	        fileOut.close();
 	    }//end try block
@@ -297,6 +300,7 @@ public class MainPanel extends JFrame
 			FileOutputStream fileOut = new FileOutputStream(file);
 		    ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		    out.writeObject(relations);
+		    out.flush();
 		    out.close();
 		    fileOut.close();
 		}//end try block
