@@ -108,21 +108,21 @@ public class RelationshipPanel extends JPanel
 				{
 					if(panel.getRelations().isFamily(panel.getCurUser(), usern)||panel.getRelations().isFriend(panel.getCurUser(), usern))
 					{
+						JOptionPane.showMessageDialog(panel, "That user is already in one of your lists.");
+						panel.switchRelationship();
+					}//end if statement
+					else
+					{
 						if(fam)
 						{
 							panel.getRelations().addFamily(panel.getCurUser(), usern);
 							panel.switchUser();
-						}
+						}//end if statement
 						else
 						{
 							panel.getRelations().addFriend(panel.getCurUser(), usern);
 							panel.switchUser();
-						}
-					}//end if statement
-					else
-					{
-						JOptionPane.showMessageDialog(panel, "That user is already in one of your lists.");
-						panel.switchRelationship();
+						}//end else statement
 					}//end else statement
 				}//end if statement
 				else
