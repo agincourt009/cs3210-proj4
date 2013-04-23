@@ -33,8 +33,6 @@ public class ControlList implements java.io.Serializable
 		this.friends.add(friend);
 		this.family.add(fam);
 		
-		JOptionPane.showMessageDialog(panel,"Current files:" + output);
-		
 	}//end file adder
 	
 	public boolean hasAccess(String filePath, String user, RelationshipList relation)
