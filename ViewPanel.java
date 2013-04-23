@@ -45,7 +45,7 @@ public class ViewPanel extends JPanel
 		photos.addListSelectionListener(listlisten);
 		
 		scroll = new JScrollPane(photos);
-		scroll.setPreferredSize(new Dimension(250, 80));
+		scroll.setPreferredSize(new Dimension(400,100));
 		
 		LogoutListener log = new LogoutListener();
 		logout.addActionListener(log);
@@ -81,8 +81,7 @@ public class ViewPanel extends JPanel
 				try
 		    	{
 		    		Process proc = run.exec("display " + data[photos.getSelectedIndex()]);
-		    		proc.exitValue();
-		    	}//end try block
+		   	}//end try block
 		    	catch(IOException i)
 		    	{
 		    		i.printStackTrace();

@@ -137,7 +137,7 @@ public class AddPanel extends JPanel
 			    	try
 			    	{
 			    		Process proc = run.exec("cp " + chooser.getSelectedFile().getPath() + " //nethome//kpowell32//proj4//example//mountdir");
-			    		proc.exitValue();
+			    	
 			    	}//end try block
 			    	catch(IOException i)
 			    	{
