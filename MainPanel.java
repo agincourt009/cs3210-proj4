@@ -27,10 +27,9 @@ public class MainPanel extends JFrame
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{		
-		/**
 			CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 			c.syscall(291);
-			*/
+		
 		RelationshipList relations = new RelationshipList();
 		ControlList control = new ControlList();
 		
@@ -83,10 +82,10 @@ public class MainPanel extends JFrame
 	         i.printStackTrace();
 	         return;
 	    }//end catch block
-		catch(ClassNotFoundException c)
+		catch(ClassNotFoundException e)
 	    {
 	         System.out.println("RelationshipList or ControlList class not found.");
-	         c.printStackTrace();
+	         e.printStackTrace();
 	         return;
 	    }//end catch block
 		
