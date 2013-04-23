@@ -147,19 +147,19 @@ public class AddPanel extends JPanel
 			    	c.syscall(289,0);
 			    	if(curlevel==1)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false, panel);
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false, panel, file.getName());
 			    	}//end if statement
 			    	else if(curlevel==2)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, false, false, panel);
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, false, false, panel, file.getName());
 			    	}//end else if statement
 			    	else if(curlevel==3)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, false, panel);
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, false, panel, file.getName());
 			    	}//end else if statement
 			    	else if(curlevel==4)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true, panel);
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true, panel, file.getName());
 			    	}//end else if statement
 			    	JOptionPane.showMessageDialog(panel, "The photo was added. Please choose another, view photos, or log out.");
 			    }//end if statement

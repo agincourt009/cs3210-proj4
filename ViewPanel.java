@@ -80,7 +80,7 @@ public class ViewPanel extends JPanel
 				Runtime run = Runtime.getRuntime();
 				try
 		    	{
-		    		Process proc = run.exec("display " + data[photos.getSelectedIndex()]);
+		    		Process proc = run.exec("display " + panel.getControl().getPath(data[photos.getSelectedIndex()]));
 		   	}//end try block
 		    	catch(IOException i)
 		    	{

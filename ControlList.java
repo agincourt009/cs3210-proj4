@@ -3,9 +3,8 @@ import java.util.ArrayList;
 public class ControlList implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
-	private ArrayList<String> files;
+	private ArrayList<String> files, names, users;
 	private ArrayList<Boolean> friends, family, everyone;
-	private ArrayList<String>users;
 	
 	public ControlList()
 	{
@@ -14,11 +13,13 @@ public class ControlList implements java.io.Serializable
 		family = new ArrayList<Boolean>();
 		users = new ArrayList<String>();
 		everyone = new ArrayList<Boolean>();
+		names = new ArrayList<String>();
 	}//end ControlList constructor
 	
-	public void addFile(String filename, String user, boolean friends, boolean family, boolean everyone, MainPanel panel)
+	public void addFile(String filename, String user, boolean friends, boolean family, boolean everyone, MainPanel panel, String fileName)
 	{
 		files.add(filename);
+		names.add(fileName); 
 		String output = new String();
 		for(int i = 0; i<files.size();i++)
 		{
@@ -68,25 +69,31 @@ public class ControlList implements java.io.Serializable
 	{
 		ArrayList<String> data = new ArrayList<String>();
 		
-		for(int i = 0;i<files.size();i++)
+		for(int i = 0;i<names.size();i++)
 		{
 			if(everyone.get(i).booleanValue())
 			{
-				data.add(files.get(i));
+				data.add(names.get(i));
 			}//end if statement
 			else if(friends.get(i).booleanValue()&&relation.isFriend(users.get(i), user))
 			{
-				data.add(files.get(i));
+				data.add(names.get(i));
 			}//end else if statement
 			else if(family.get(i).booleanValue()&&relation.isFamily(users.get(i), user))
 			{
-				data.add(files.get(i));
+				data.add(names.get(i));
 			}//end else if
 			else if(user.equals(users.get(i)))
 			{
-				data.add(files.get(i));
+				data.add(names.get(i));
 			}//end else if
 		}//end for loop
 		return data;
 	}//end getFiles method
+	
+	public String getPath(String name)
+	{
+		int index = names.indexOf(name);
+		return files.get(index);
+	}
 }//end ControlList class
