@@ -25,12 +25,16 @@ public class RelationshipList implements java.io.Serializable
 	{
 		int index = users.indexOf(user);
 		friends.get(index).add(friend);
+		int in = users.indexOf(friend);
+		friends.get(in).add(user);
 	}//end addFriend method
 	
 	public void addFamily(String user, String famil)
 	{
 		int index = users.indexOf(user);
 		family.get(index).add(famil);
+		int in = users.indexOf(famil);
+		family.get(in).add(user);
 	}//end addFamily method
 	
 	public ArrayList<String> getFriends(String user)
