@@ -28,8 +28,10 @@ public class MainPanel extends JFrame
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{		
+		/**
 		CStdLib c = (CStdLib)Native.loadLibrary("c", CStdLib.class);
 		c.syscall(291);
+		*/
 		
 		RelationshipList relations = new RelationshipList();
 		ControlList control = new ControlList();
