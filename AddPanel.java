@@ -161,7 +161,6 @@ public class AddPanel extends JPanel
 			    	{
 			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true, panel);
 			    	}//end else if statement
-			       JOptionPane.showMessageDialog(panel, "The File has been added. Please add another file or logout.");
 			    }//end if statement
 			    panel.switchAdd();
 			}//end else statement

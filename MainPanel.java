@@ -118,22 +118,25 @@ public class MainPanel extends JFrame
 	}//end MainPanel constructor
 	public void logout()
 	{
+		LoginPanel newLog = new LoginPanel(this);
 		curlevel = 0;
 		String usere = new String("Everyone");
 		curUser = usere;
-		this.setContentPane(login);
+		this.setContentPane(newLog);
 		this.validate();
 	}//end logout method
 	
 	public void switchAdd()
 	{
-		this.setContentPane(add);
+		AddPanel newAdd = new AddPanel(this);
+		this.setContentPane(newAdd);
 		this.validate();
 	}//end switchAdd method
 	
 	public void switchUser()
 	{
-		this.setContentPane(user);
+		UserPanel newUser = new UserPanel(this);
+		this.setContentPane(newUser);
 		this.validate();
 	}//end switchUser method
 	
@@ -155,13 +158,15 @@ public class MainPanel extends JFrame
 	
 	public void switchNew()
 	{
-		this.setContentPane(newp);
+		NewPanel newNew = new NewPanel(this);
+		this.setContentPane(newNew);
 		this.validate();
 	}//end switchNew method
 	
 	public void switchRelationship()
 	{
-		this.setContentPane(relation);
+		RelationshipPanel newRelation = new RelationshipPanel(this);
+		this.setContentPane(newRelation);
 		this.validate();
 	}//end switchNew method
 	
