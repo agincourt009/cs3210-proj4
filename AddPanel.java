@@ -136,8 +136,8 @@ public class AddPanel extends JPanel
 			    	Runtime run = Runtime.getRuntime();
 			    	try
 			    	{
-			    		Process proc = run.exec("cp " + chooser.getSelectedFile()+ " //nethome//kpowell32//proj4//example//mountdir");
-			    	
+			    		Process proc = run.exec("cp " + chooser.getSelectedFile().getPath() + " //nethome//kpowell32//proj4//example//mountdir");
+			    		proc.exitValue();
 			    	}//end try block
 			    	catch(IOException i)
 			    	{
@@ -147,19 +147,19 @@ public class AddPanel extends JPanel
 			    	c.syscall(289,0);
 			    	if(curlevel==1)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false, panel, file.getName());
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false, panel);
 			    	}//end if statement
 			    	else if(curlevel==2)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, false, false, panel, file.getName());
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, false, false, panel);
 			    	}//end else if statement
 			    	else if(curlevel==3)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, false, panel, file.getName());
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, false, panel);
 			    	}//end else if statement
 			    	else if(curlevel==4)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true, panel, file.getName());
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true, panel);
 			    	}//end else if statement
 			    	JOptionPane.showMessageDialog(panel, "The photo was added. Please choose another, view photos, or log out.");
 			    }//end if statement
