@@ -36,8 +36,6 @@ public class MainPanel extends JFrame
 		
 		MainPanel panel = new MainPanel(relations, control);
 		
-		control.addPanel(panel);
-		
 		ViewPanel view = new ViewPanel(panel, "Logout");
 		panel.setView(view);
 		LoginPanel login = new LoginPanel(panel);

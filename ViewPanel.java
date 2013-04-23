@@ -28,7 +28,7 @@ public class ViewPanel extends JPanel
 		
 		setPreferredSize(new Dimension(700,400));
 		
-		ArrayList<String> temp = panel.getControl().getFiles(panel.getCurUser());
+		ArrayList<String> temp = panel.getControl().getFiles(panel.getCurUser(), panel.getRelations());
 		data = new String[temp.size()];
 		
 		for(int i = 0; i<temp.size();i++)

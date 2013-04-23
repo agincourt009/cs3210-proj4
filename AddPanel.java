@@ -147,19 +147,19 @@ public class AddPanel extends JPanel
 			    	c.syscall(289,0);
 			    	if(curlevel==1)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false);
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), false, false, false, panel);
 			    	}//end if statement
 			    	else if(curlevel==2)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, false, false);
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, false, false, panel);
 			    	}//end else if statement
 			    	else if(curlevel==3)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, false);
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, false, panel);
 			    	}//end else if statement
 			    	else if(curlevel==4)
 			    	{
-			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true);
+			    		panel.getControl().addFile(file.getPath(), panel.getCurUser(), true, true, true, panel);
 			    	}//end else if statement
 			       JOptionPane.showMessageDialog(panel, "The File has been added. Please add another file or logout.");
 			    }//end if statement

@@ -7,8 +7,6 @@ public class ControlList implements java.io.Serializable
 	private ArrayList<String> files;
 	private ArrayList<Boolean> friends, family, everyone;
 	private ArrayList<String>users;
-	private RelationshipList relation;
-	private MainPanel panel;
 	
 	public ControlList()
 	{
@@ -19,7 +17,7 @@ public class ControlList implements java.io.Serializable
 		everyone = new ArrayList<Boolean>();
 	}//end ControlList constructor
 	
-	public void addFile(String filename, String user, boolean friends, boolean family, boolean everyone)
+	public void addFile(String filename, String user, boolean friends, boolean family, boolean everyone, MainPanel panel)
 	{
 		files.add(filename);
 		String output = new String();
@@ -39,7 +37,7 @@ public class ControlList implements java.io.Serializable
 		
 	}//end file adder
 	
-	public boolean hasAccess(String filePath, String user)
+	public boolean hasAccess(String filePath, String user, RelationshipList relation)
 	{
 		int index = files.indexOf(filePath);
 		if(user==users.get(index))
@@ -69,13 +67,7 @@ public class ControlList implements java.io.Serializable
 		return everyone.get(index).booleanValue();
 	}//end isEveryone method
 	
-	public void addPanel(MainPanel panel)
-	{
-		this.panel = panel;
-		relation = panel.getRelations();
-	}//end addPanel method
-	
-	public ArrayList<String> getFiles(String user)
+	public ArrayList<String> getFiles(String user, RelationshipList relation)
 	{
 		ArrayList<String> data = new ArrayList<String>();
 		
